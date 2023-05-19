@@ -1,0 +1,7 @@
+{
+  "name": "clotesApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
