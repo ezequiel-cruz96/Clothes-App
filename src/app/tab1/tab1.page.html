@@ -1,15 +1,30 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title> Proyecto mobile </ion-title>
+    <ion-title> Clotes Api </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-header> </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <ion-content class="ion-padding">
+    <ion-input
+      label="Usuario"
+      label-placement="floating"
+      fill="outline"
+      placeholder="Ingrese su nombre de usuario"
+      [(ngModel)]="inputUser"
+    ></ion-input>
+
+    <ion-input
+      class="ion-margin-top"
+      label="Contraseña"
+      label-placement="floating"
+      fill="outline"
+      placeholder="Ingrese su contraseña"
+      [(ngModel)]="inputPassword"
+    ></ion-input>
+
+    <ion-button class="ion-margin-top" (click)="test()">Ingresar</ion-button>
+  </ion-content>
 </ion-content>
