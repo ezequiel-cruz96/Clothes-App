@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { RangeCustomEvent } from '@ionic/angular';
+
+import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-tab1',
@@ -7,14 +8,21 @@ import { RangeCustomEvent } from '@ionic/angular';
   styleUrls: ['tab1.page.scss'],
 })
 export class Tab1Page {
-  constructor() {}
+  constructor(public autho: Auth) {}
 
   inputUser: string = '';
 
   inputPassword: string = '';
 
-  test() {
-    console.log(this.inputUser);
-    console.log(this.inputPassword);
+  errors: string = '';
+
+  login() {
+    signInWithEmailAndPassword(this.autho, this.inputUser, this.inputPassword)
+      .then(() => {
+        this.errors = 'Login exitoso';
+      })
+      .catch((err) => {
+        this.errors = err.message;
+      });
   }
 }
