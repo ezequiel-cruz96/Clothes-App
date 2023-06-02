@@ -1,0 +1,24 @@
+<ion-content class="ion-padding">
+  <ion-input
+    label="Usuario"
+    label-placement="floating"
+    fill="outline"
+    placeholder="Ingrese su nombre de usuario"
+    [(ngModel)]="inputUser"
+  ></ion-input>
+
+  <ion-input
+    class="ion-margin-top"
+    label="Contraseña"
+    label-placement="floating"
+    fill="outline"
+    placeholder="Ingrese su contraseña"
+    [(ngModel)]="inputPassword"
+  ></ion-input>
+
+  <ion-button class="ion-margin-top" (click)="login()">Ingresar</ion-button>
+
+  <ion-title *ngIf="errors" [ngClass]="{'errors' : errors.length > 0}"
+    >{{errors}}</ion-title
+  >
+</ion-content>
