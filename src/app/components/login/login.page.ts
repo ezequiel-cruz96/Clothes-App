@@ -10,7 +10,11 @@ import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
 export class LoginPage implements OnInit {
   constructor(public autho: Auth) {}
 
+
   ngOnInit() {}
+
+  test :any="src/assets/icon/favicon.png"
+
 
   inputUser: string = '';
 

@@ -1,22 +1,36 @@
 <ion-content class="ion-padding">
+
+<div class="io-center">
+<img src="./assets/icon/remera.svg"alt="" class="ion-padding clothe-icon">
+</div>
+
   <ion-input
-    label="Usuario"
+    label="Correo electronico"
     label-placement="floating"
     fill="outline"
-    placeholder="Ingrese su nombre de usuario"
+    placeholder="Ingrese su correo electronico"
     [(ngModel)]="inputUser"
+    class="custom"
   ></ion-input>
 
   <ion-input
-    class="ion-margin-top"
     label="Contraseña"
     label-placement="floating"
     fill="outline"
     placeholder="Ingrese su contraseña"
     [(ngModel)]="inputPassword"
+    type="password"
+    class=" custom ion-margin-top"
   ></ion-input>
 
-  <ion-button class="ion-margin-top" (click)="login()">Ingresar</ion-button>
+  <ion-button class="ion-margin-top" color="primary" (click)="login()" class="button-google">  
+    <ion-icon name="logo-google"></ion-icon>
+  </ion-button>
+
+  <div class="io-center button-wrapper">
+    <ion-button class="ion-margin-top" color="danger" (click)="login()">Ingresar</ion-button>
+    <ion-button class="ion-margin-top" color="danger" (click)="login()">Registrarse</ion-button>
+  </div>
 
   <ion-title *ngIf="errors" [ngClass]="{'errors' : errors.length > 0}"
     >{{errors}}</ion-title

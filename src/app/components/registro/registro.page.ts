@@ -15,4 +15,5 @@ export class RegistroPage implements OnInit {
   redirectLogin() {
     this.router.navigate(['/login']);
   }
+  menuType: string = 'overlay';
 }
