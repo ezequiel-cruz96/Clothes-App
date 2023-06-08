@@ -3,13 +3,13 @@
   <div class="io-center">
   <ion-icon name="book-outline" class="register-icon"></ion-icon>
   </div>
-  
+
     <ion-input
       label="Correo electronico"
       label-placement="floating"
       fill="outline"
       placeholder="Ingrese su correo electronico"
-      [(ngModel)]="inputUser"
+      [(ngModel)]="emailRegister"
       class="custom"
     ></ion-input>
   
@@ -18,15 +18,19 @@
       label-placement="floating"
       fill="outline"
       placeholder="Ingrese su contraseña"
-      [(ngModel)]="inputPassword"
+      [(ngModel)]="passwordRegister"
       type="password"
       class=" custom ion-margin-top"
     ></ion-input>
 
     <div class="io-center button-wrapper">
-      <ion-button class="ion-margin-top" color="danger" (click)="toMenu()">Ingresar</ion-button>
+      <ion-button 
+        [disabled]="emailRegister && passwordRegister ? false : true" 
+        [color]="emailRegister && passwordRegister !validateField ? 'danger' : 'medium'" 
+        class="ion-margin-top"
+        (click)="registerUser()">
+        Ingresar
+    </ion-button>
     </div>
   
- 
   </ion-content>
-  

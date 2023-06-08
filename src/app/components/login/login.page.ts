@@ -29,7 +29,7 @@ export class LoginPage implements OnInit {
   login() {
     signInWithEmailAndPassword(this.autho, this.inputUser, this.inputPassword)
       .then(() => {
-        this.errors = 'Login exitoso';
+        this.router.navigate(['/menu']);
       })
       .catch((err) => {
         let mailError :string ="Firebase: Error (auth/invalid-email)."

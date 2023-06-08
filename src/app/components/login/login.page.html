@@ -33,11 +33,14 @@
   </ion-button>
 
   <div class="io-center button-wrapper">
-    <ion-button class="ion-margin-top" color="danger" (click)="login()">Ingresar</ion-button>
+    <ion-button 
+    [disabled]="inputUser && inputPassword && !validateField ? false : true" 
+    [color]="inputUser && inputPassword ? 'danger' : 'medium'" 
+    class="ion-margin-top"
+    (click)="login()">
+    Ingresar
+</ion-button>
     <ion-button class="ion-margin-top" color="danger" (click)="toRegister()">Registrarse</ion-button>
   </div>
 
-  <ion-title *ngIf="errors" [ngClass]="{'errors' : errors.length > 0}"
-    >{{errors}}</ion-title
-  >
 </ion-content>
