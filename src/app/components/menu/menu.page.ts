@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Router } from '@angular/router';
+
+
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.page.html',
@@ -7,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuPage implements OnInit {
 
-  constructor() { }
+  constructor( public router :Router) { }
 
   ngOnInit() {
   }
 
+  toLiquidations(){
+    this.router.navigate(['/liquidations']);
+  }
 }
