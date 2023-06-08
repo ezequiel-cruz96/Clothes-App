@@ -2,5 +2,16 @@
 
 <ion-content class="ion-padding">
 
-  <p>Liquidaciones</p>
+  <p>Cotizacion del dia</p>
+
+  <ion-list *ngFor="let dolar of dolars">
+    <ion-item>
+        <ion-label class="io-margin-left">{{ dolar.casa.nombre }}</ion-label>
+          <div class="io-row">  
+            <ion-label>Compra <span>{{ dolar.casa.compra }}</span></ion-label>
+            <ion-label>Venta <span>{{ dolar.casa.venta }}</span></ion-label>
+            </div>
+    </ion-item>
+  </ion-list>
+
 </ion-content>

@@ -1,4 +1,12 @@
-ion-content{
-    --ion-background-color: linear-gradient(#FEB692, #EA5455);
- }
- 
+
+
+.io-row{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    gap: 15px;
+}
+
+.io-margin-left{
+    margin-right: 8px;
+}
