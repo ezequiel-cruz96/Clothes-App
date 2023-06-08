@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-login',
@@ -11,14 +13,12 @@ import { Router } from '@angular/router';
 export class LoginPage implements OnInit {
   constructor(
     public autho: Auth,
-    public router: Router
+    public router: Router,
+    private alertController: AlertController
     ) {}
 
 
   ngOnInit() {}
-
-  test :any="src/assets/icon/favicon.png"
-
 
   inputUser: string = '';
 
@@ -32,14 +32,40 @@ export class LoginPage implements OnInit {
         this.errors = 'Login exitoso';
       })
       .catch((err) => {
-        this.errors = err.message;
+        let mailError :string ="Firebase: Error (auth/invalid-email)."
+        if(err.message ===mailError){
+          this.presentAlert("mail")
+        } else{
+          this.presentAlert("password")
+        }
       });
   }
 
-  loginGoogle(){
-    this.router.navigate(['/registro']);
+  validateField=false
+
+  validate(){
+    if(this.inputUser){
+       this.validateEmail(this.inputUser) ? this.validateField = false :this.validateField = true
+    }
   }
 
- 
+
+   validateEmail (inputUser: any)  {
+    return inputUser.match(
+      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+  }
+
+  async presentAlert(error :string) {
+    let errors =error==="mail"? "Mail incorrecto / Campo vacio" : "Password incorrecto / Campo vacio"
+    const alert = await this.alertController.create({
+      message: errors,   
+    });
+    await alert.present();
+  }
+
+  toRegister(){
+    this.router.navigate(['/registro']);
+  }
 
 }

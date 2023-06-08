@@ -4,6 +4,8 @@
 <img src="./assets/icon/remera.svg"alt="" class="ion-padding clothe-icon">
 </div>
 
+<p *ngIf="validateField && inputUser" class="error-field"> El formato del mail es incorrecto</p>
+
   <ion-input
     label="Correo electronico"
     label-placement="floating"
@@ -11,6 +13,8 @@
     placeholder="Ingrese su correo electronico"
     [(ngModel)]="inputUser"
     class="custom"
+    (input)="validate()"
+    [ngClass]="[ inputUser ? validateField ? 'errors' : 'sucess' : '' ]"
   ></ion-input>
 
   <ion-input
@@ -21,15 +25,16 @@
     [(ngModel)]="inputPassword"
     type="password"
     class=" custom ion-margin-top"
+    [ngClass]="[ inputPassword ? 'sucess' : '' ]"
   ></ion-input>
 
-  <ion-button class="ion-margin-top" color="primary" (click)="loginGoogle()" class="button-google">  
+  <ion-button class="ion-margin-top" color="primary"  class="button-google">  
     <ion-icon name="logo-google"></ion-icon>
   </ion-button>
 
   <div class="io-center button-wrapper">
     <ion-button class="ion-margin-top" color="danger" (click)="login()">Ingresar</ion-button>
-    <ion-button class="ion-margin-top" color="danger" (click)="login()">Registrarse</ion-button>
+    <ion-button class="ion-margin-top" color="danger" (click)="toRegister()">Registrarse</ion-button>
   </div>
 
   <ion-title *ngIf="errors" [ngClass]="{'errors' : errors.length > 0}"

@@ -18,7 +18,7 @@ ion-content{
     --width: 250px;
     --background: white;
     --border-radius:8px;
-    --color:#FEB692;
+    --color:black
  }
 
 .clothe-icon {
@@ -31,3 +31,25 @@ ion-content{
     margin-top: 16px;
 }
 
+.errors{
+    border: solid red 2px;
+    border-radius: 8px;
+}
+
+.sucess{
+    border: solid #2dd36f 2px;
+    border-radius: 8px;
+}
+
+.error-field{
+    position: absolute;
+    top: 130px;
+    color: red;
+    font-size: 12px;
+    right: 20px;
+    font-weight: 600;
+}
+
+.ion-valid.sc-ion-input-md-h {
+    --highlight-color: none;
+}
