@@ -21,6 +21,11 @@ const routes: Routes = [
         (m) => m.RegistroPageModule
       ),
   },
+  
+  {
+    path: 'menu',
+    loadChildren: () => import('./components/menu/menu.module').then( m => m.MenuPageModule)
+  },
 ];
 @NgModule({
   imports: [

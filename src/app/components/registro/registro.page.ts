@@ -12,8 +12,15 @@ export class RegistroPage implements OnInit {
 
   ngOnInit() {}
 
-  redirectLogin() {
-    this.router.navigate(['/login']);
+  toMenu() {
+    this.router.navigate(['/menu']);
   }
   menuType: string = 'overlay';
+
+  
+  inputUser: string = '';
+
+  inputPassword: string = '';
+
+  errors: string = '';
 }

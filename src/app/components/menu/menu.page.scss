@@ -1,0 +1,44 @@
+ion-content{
+    --ion-background-color: linear-gradient(#FEB692, #EA5455);
+ }
+
+.io-center{
+   display: flex;
+   justify-content: center;
+   align-content: center;
+ }
+
+ .io-center-column{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+ }
+
+ .menu-wrapper{
+    height: 100%;
+    flex-wrap: wrap;
+    gap: 8px;
+ }
+
+ .button-wrapper{
+   width: 100px;
+   height: 100px;
+   border-radius: 16px;
+   background-color: #EA5455;
+   padding: 8px;
+   cursor: pointer;
+ }
+
+ .menu-icon{
+   margin-top: 16px;
+   width: 40px;
+   height: 40px;
+ }
+
+
+  .menu-container{
+   width: 100px;
+   height: 80px;
+   color: white;
+ }

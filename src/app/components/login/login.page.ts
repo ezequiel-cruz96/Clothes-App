@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +9,10 @@ import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  constructor(public autho: Auth) {}
+  constructor(
+    public autho: Auth,
+    public router: Router
+    ) {}
 
 
   ngOnInit() {}
@@ -31,4 +35,11 @@ export class LoginPage implements OnInit {
         this.errors = err.message;
       });
   }
+
+  loginGoogle(){
+    this.router.navigate(['/registro']);
+  }
+
+ 
+
 }

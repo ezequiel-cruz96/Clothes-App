@@ -1,26 +1,32 @@
-<ion-menu [type]="menuType" content-id="main-content">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>Menu</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content class="ion-padding">
-    <ion-menu-toggle>
-        <ion-icon aria-hidden="true" name="triangle"></ion-icon>
-        <ion-label (click)="redirectLogin()">Volver</ion-label>
-    <p>2</p>      
-</ion-menu-toggle>
-  </ion-content>
-</ion-menu>
+<ion-content class="ion-padding">
 
-<div class="ion-page" id="main-content">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>Menu</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content class="ion-padding">
-    <h2>Vista de registro</h2>
+  <div class="io-center">
+  <ion-icon name="book-outline" class="register-icon"></ion-icon>
+  </div>
+  
+    <ion-input
+      label="Correo electronico"
+      label-placement="floating"
+      fill="outline"
+      placeholder="Ingrese su correo electronico"
+      [(ngModel)]="inputUser"
+      class="custom"
+    ></ion-input>
+  
+    <ion-input
+      label="Contraseña"
+      label-placement="floating"
+      fill="outline"
+      placeholder="Ingrese su contraseña"
+      [(ngModel)]="inputPassword"
+      type="password"
+      class=" custom ion-margin-top"
+    ></ion-input>
 
+    <div class="io-center button-wrapper">
+      <ion-button class="ion-margin-top" color="danger" (click)="toMenu()">Ingresar</ion-button>
+    </div>
+  
+ 
   </ion-content>
-</div>
+  
