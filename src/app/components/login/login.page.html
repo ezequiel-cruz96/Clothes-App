@@ -28,7 +28,7 @@
     [ngClass]="[ inputPassword ? 'sucess' : '' ]"
   ></ion-input>
 
-  <ion-button class="ion-margin-top" color="primary"  class="button-google">  
+  <ion-button class="ion-margin-top" color="primary"  class="button-google" (click)="registerGoogle()">  
     <ion-icon name="logo-google"></ion-icon>
   </ion-button>
 
@@ -42,5 +42,6 @@
 </ion-button>
     <ion-button class="ion-margin-top" color="danger" (click)="toRegister()">Registrarse</ion-button>
   </div>
+
 
 </ion-content>

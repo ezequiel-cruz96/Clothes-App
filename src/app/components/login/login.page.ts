@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { getAuth,Auth, signInWithEmailAndPassword ,linkWithPopup, GoogleAuthProvider } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+
+const provider = new GoogleAuthProvider();
+
 
 
 @Component({
@@ -33,12 +36,22 @@ export class LoginPage implements OnInit {
       })
       .catch((err) => {
         let mailError :string ="Firebase: Error (auth/invalid-email)."
-        if(err.message ===mailError){
+        if(err.message === mailError){
           this.presentAlert("mail")
         } else{
           this.presentAlert("password")
         }
       });
+  }
+
+  registerGoogle(){
+    const auth :any = getAuth();
+    linkWithPopup(auth.currentUser, provider)
+    .then(() => {
+      this.router.navigate(['/menu']);
+    }).catch((error) => {
+     console.log(error)
+    });
   }
 
   validateField=false
