@@ -1,17 +1,46 @@
-
-
-<ion-content class="ion-padding">
-
-  <p>Cotizacion del dia</p>
-
-  <ion-list *ngFor="let dolar of dolars">
-    <ion-item>
+<ion-content class="ion-padding test" style="margin-bottom: 16px;">
+  <div style="margin-bottom: 16px;">
+    <ion-label class="title-liquidation">Cotización del día</ion-label>
+  </div>
+    <ion-item color="light" *ngFor="let dolar of dolars" class="dolar-item">
         <ion-label class="io-margin-left">{{ dolar.casa.nombre }}</ion-label>
           <div class="io-row">  
-            <ion-label>Compra <span>{{ dolar.casa.compra }}</span></ion-label>
-            <ion-label>Venta <span>{{ dolar.casa.venta }}</span></ion-label>
-            </div>
-    </ion-item>
-  </ion-list>
-
+            <ion-label>Compra: <span>{{ dolar.casa.compra }} $</span></ion-label>
+            <ion-label>Venta: <span>{{ dolar.casa.venta }} $</span></ion-label>
+          </div>
+        </ion-item>
+        <div style="margin-top: 16px;">
+          <ion-label class="title-liquidation">Ajuste de tarifa según Dolar blue</ion-label>
+        </div>
+        <div style="margin-top: 16px;">
+        <div class="card-container" *ngIf="dolars">
+          <img src="./assets/icon/Remera.svg" alt="" class="clothes-icon">
+          <div>
+            <ion-label color="light">{{dolars[1].casa.nombre}} </ion-label>
+            <ion-label color="light">Venta: {{dolars[1].casa.compra}} $ </ion-label>
+            <ion-label color="light">Compra: {{dolars[1].casa.venta}} $ </ion-label>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top: 16px;">
+        <ion-item *ngIf="dolars" color="light" class="dolar-item">
+          <div class="card-container">
+            <ion-label >Precio actualizado al dolar :</ion-label>
+            <ion-label >{{ clothesPrice}} $ / {{ dolarBlue }} $ 
+              = {{ actualPriceRound }} $ </ion-label>
+          </div>     
+        </ion-item > 
+      </div> 
 </ion-content>
+
+<div class="tabs-navbar">
+    <ion-tab-button tab="home" (click) = "toBack()">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+      Volver
+    </ion-tab-button>
+    <ion-tab-button tab="radio" (click) = "toMenu()">
+      <ion-icon name="grid-outline"></ion-icon>
+      Menu
+    </ion-tab-button>
+  </div>
+
