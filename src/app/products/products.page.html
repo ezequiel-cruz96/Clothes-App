@@ -1,7 +1,43 @@
 
-<ion-content [fullscreen]="true">
-  <ion-title size="large">Productos</ion-title>
+<ion-content class="products ion-padding">
 
-  
-  <button (click)="onSubmit() ">sdadsdas</button>
+  <div style="margin-bottom: 16px;">
+    <ion-label class="title-products">Carga de productos</ion-label>
+  </div>
+
+  <div style="margin-bottom: 16px;">
+    <ion-label class="title-products">Prenda</ion-label>
+  </div>
+
+  <ion-item color="light" class="prenda-item">
+    <ion-select [(ngModel)]="selecTedValue" placeholder="Tipo de prenda">  // pass your selecTedValue ngModel as parameter
+      <ion-select-option *ngFor="let prenda of prendas" value="{{ prenda }}">
+        {{ prenda }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <div style="margin-top: 16px;">
+    <ion-label class="title-products">Talle</ion-label>
+  </div>
+
+  <ion-item color="light" class="prenda-item">
+    <ion-select [(ngModel)]="selecTedTalle" placeholder="Tipo de talle">  // pass your selecTedValue ngModel as parameter
+      <ion-select-option *ngFor="let talle of talles" value="{{ talle }}">
+        {{ talle }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
 </ion-content>
+
+<div class="tabs-navbar">
+  <ion-tab-button tab="home" (click) = "toBack()">
+    <ion-icon name="chevron-back-outline"></ion-icon>
+    Volver
+  </ion-tab-button>
+  <ion-tab-button tab="radio" (click) = "toMenu()">
+    <ion-icon name="grid-outline"></ion-icon>
+    Menu
+  </ion-tab-button>
+</div>

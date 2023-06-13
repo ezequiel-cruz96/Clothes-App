@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Location } from "@angular/common";
+import { Router } from '@angular/router';
+
 import { Firestore, collection, addDoc, collectionData, doc, getDoc,getFirestore ,deleteDoc} from '@angular/fire/firestore'
 
 
@@ -10,11 +13,13 @@ import { Firestore, collection, addDoc, collectionData, doc, getDoc,getFirestore
 })
 export class ProductsPage implements OnInit {
 
-  constructor( private firestore :Firestore) { }
+  constructor( 
+    private firestore :Firestore,
+    public router:Router,
+    private location : Location
+    ) {}
 
   collection: any[] |  undefined;
-
-
 
   addData(test:any){
     const collectionInsta =collection(this.firestore,"Stock")
@@ -26,6 +31,16 @@ export class ProductsPage implements OnInit {
       console.log(err)
     });
   }
+
+  
+
+  prendas =['Remera','Pantalon','Camisa','Campera'];
+
+  talles =['S','M','L','XL'];
+
+  selecTedValue: any 
+
+  selecTedTalle: any 
   
 
   async pedirDatita(){
@@ -39,9 +54,10 @@ export class ProductsPage implements OnInit {
 
     try {
       const docSnap = await getDoc(docRef);
-      console.log(docSnap.data());
 
       this.datos=docSnap.data()
+
+      console.log(this.datos.remera.precio);
 
   } catch(error) {
       console.log(error)
@@ -72,7 +88,7 @@ export class ProductsPage implements OnInit {
   }
 
   ngOnInit() {
-    //this.pedirDatita() funcionaaaaaa
+    this.pedirDatita() 
   }
 
  onSubmit(){
@@ -85,4 +101,13 @@ export class ProductsPage implements OnInit {
      // this.EliminarDatita() funcionaaa
 
   }
+
+  toMenu(){
+    this.router.navigate(['/menu']);
+  }
+
+  toBack(){
+    this.location.back();  
+  }
+
 }

@@ -1,0 +1,21 @@
+ion-content.products{
+    --ion-background-color: linear-gradient(#FEB692, #EA5455);
+}
+
+.title-products{
+    color: white;
+    font-size: 24px;
+}
+
+ion-item.prenda-item{
+    --border-radius: 8px;
+    margin-top: 8px;
+    --ion-background-color: white;
+}
+
+.tabs-navbar{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: 50px;
+}

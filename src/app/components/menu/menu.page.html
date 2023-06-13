@@ -1,9 +1,12 @@
 
   <ion-content class="ion-padding">
-    <ion-title>Menu principal</ion-title>
+    <div style="margin-bottom: 16px;">
+      <ion-label class="title-menu">Menu</ion-label>
+    </div>
+
     <div class="menu-wrapper io-center">
 
-      <div class="ion-margin-top" color="danger" class="button-wrapper io-center">
+      <div class="ion-margin-top" color="danger" class="button-wrapper io-center" (click)="toProducts()">
         <div class="menu-container io-center-column">
           <img src="./assets/icon/Remera.svg"alt="" class="menu-icon">
           <p>Inventario</p>
@@ -24,7 +27,7 @@
         </div>
       </div>
 
-      <div class="ion-margin-top" color="danger" class="button-wrapper io-center">
+      <div class="ion-margin-top" color="danger" class="button-wrapper io-center"  (click)="toLogout()">
       <div class="menu-container io-center-column">
         <img src="./assets/icon/Salida.svg"alt="" class="menu-icon">
         <p>Salir</p>

@@ -16,15 +16,15 @@
         <div class="card-container" *ngIf="dolars">
           <img src="./assets/icon/Remera.svg" alt="" class="clothes-icon">
           <div>
-            <ion-label color="light"> Precio actual {{clothesPrice}} $ </ion-label>
+            <ion-label color="light"> Precio actual {{ clothesPrice.remera.precio }} $ </ion-label>
           </div>
         </div>
       </div>
       <div style="margin-top: 16px;">
-        <ion-item *ngIf="dolars" color="light" class="dolar-item">
+        <ion-item *ngIf="dolars && clothesPrice" color="light" class="dolar-item">
           <div class="card-container">
             <ion-label >Precio actualizado al dolar :</ion-label>
-            <ion-label >{{ clothesPrice}} $ / {{ dolarBlue }} $ 
+            <ion-label >{{ this.clothesPrice.remera.precio }} $ / {{ dolarBlue }} $ 
               = {{ actualPriceRound }} $ </ion-label>
           </div>     
         </ion-item > 

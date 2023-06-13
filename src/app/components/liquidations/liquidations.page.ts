@@ -4,6 +4,9 @@ import { Location } from "@angular/common";
 import { Router } from '@angular/router';
 import { HttpProvider } from 'src/app/provider/http.provider';
 
+import { Firestore, collection, addDoc, collectionData, doc, getDoc,getFirestore ,deleteDoc} from '@angular/fire/firestore'
+
+
 
 @Component({
   selector: 'app-liquidations',
@@ -15,18 +18,16 @@ export class LiquidationsPage implements OnInit {
   constructor(
     public router:Router,
     public service: HttpProvider, 
-    private location : Location
+    private location : Location,
+    private firestore :Firestore
+  ) {}
 
-  ) { 
-
-
+  async ngOnInit() {
+    await this.getStock()
+    await this.getDolars()
   }
 
-  ngOnInit() {
-   this.getDolars()
-  }
-
-  clothesPrice: any = 1250
+  clothesPrice: any 
   
   dolarBlue: any
 
@@ -47,8 +48,28 @@ export class LiquidationsPage implements OnInit {
   updateData(data: any){
     this.dolars= data
     this.dolarBlue = this.dolars[1].casa.venta
-    this.actualPrice= this.clothesPrice / parseFloat(this.dolarBlue)
-    this.actualPriceRound=Math.round(this.actualPrice)
+    this.actualPrice= this.clothesPrice.remera.precio / parseFloat(this.dolarBlue)
+    this.actualPriceRound = Math.round(this.actualPrice)
+  }
+
+
+  async getStock(){
+    const db = getFirestore();
+
+    const docRef = doc(db, "Stock", "stock");
+
+    const docSnap = await getDoc(docRef);
+
+    docSnap.data();
+
+    try {
+      const docSnap = await getDoc(docRef);
+
+      this.clothesPrice = docSnap.data()
+    } 
+    catch(error) {
+      console.log(error)
+    }
   }
 
   toMenu(){
