@@ -58,4 +58,9 @@ export class RegistroPage implements OnInit {
 
   passwordRegister: string = '';
 
+  toLogin(){
+    this.router.navigate(['/login']);
+
+  }
+
 }
