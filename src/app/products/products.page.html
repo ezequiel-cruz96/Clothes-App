@@ -26,6 +26,8 @@
             </ion-item>
         </div>
 
+        <button (click)="agregar()">agregar</button>
+
   
      
   </section>
@@ -35,7 +37,7 @@
   </div>
 
   <div style="margin-bottom: 16px;">
-    <ion-label class="title-products">Prenda</ion-label>
+    <ion-label class="title-products">Marca</ion-label>
   </div>
 
   <ion-item color="light" class="prenda-item">
@@ -57,6 +59,10 @@
       </ion-select-option>
     </ion-select>
   </ion-item>
+
+  <div style="margin-top: 16px;">
+    <ion-button (click)="cleanFilters()">Limpiar filtos</ion-button>
+  </div>
 
 </ion-content>
 

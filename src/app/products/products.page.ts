@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from "@angular/common";
 import { Router } from '@angular/router';
 
-import { Firestore, collection, addDoc, collectionData, doc, getDoc,getFirestore ,deleteDoc} from '@angular/fire/firestore'
+import { Firestore, collection, addDoc, collectionData, doc, getDoc,getFirestore ,deleteDoc,updateDoc, arrayUnion} from '@angular/fire/firestore'
 
 
 @Component({
@@ -33,9 +33,9 @@ export class ProductsPage implements OnInit {
 
   selecTedValue: any 
 
-  selecTedTalle: any 
+  selecTedTalle: string = ""
 
-  selecTedBrand : any 
+  selecTedBrand:string = ""
 
   filterProducts: any 
 
@@ -97,12 +97,45 @@ export class ProductsPage implements OnInit {
     this.location.back();  
   }
 
+  //talle
   filterByHigh(){
-    this.filterProducts= this.remeras.filter((data: { talle: string; }) => data.talle === this.selecTedTalle);
+    if(this.selecTedBrand !=""){
+      this.filterProducts= this.remeras.filter((data: { marca: any; talle: any; }) => data.marca === this.selecTedBrand && data.talle === this.selecTedTalle);
+    }
+  
+      this.filterProducts= this.remeras.filter((data: { talle: string; }) => data.talle === this.selecTedTalle);
+ 
+  }
+///marca
+  filterByBrand(){
+    if(this.selecTedTalle !=""){
+      this.filterProducts= this.remeras.filter((data: { marca: any; talle: any; }) => data.marca === this.selecTedBrand && data.talle === this.selecTedTalle);
+    }
+      this.filterProducts= this.remeras.filter((data: { marca: any }) => data.marca === this.selecTedBrand);
+  
   }
 
-  filterByBrand(){
-    this.filterProducts= this.remeras.filter((data: { marca: string; }) => data.marca === this.selecTedBrand);
+
+  cleanFilters(){
+    this.filterProducts= this.remeras
+    this.selecTedBrand = ""
+    this.selecTedTalle = ""
+  }
+
+  async agregar(){
+
+    const db = getFirestore();
+
+
+    const washingtonRef = doc(db, "Stock", "stock");
+
+    // Atomically add a new region to the "regions" array field.
+    await updateDoc(washingtonRef, {
+        remeras: arrayUnion("remeras")
+    });
+    
+
+
   }
 
 }
