@@ -19,3 +19,26 @@ ion-item.prenda-item{
     align-content: center;
     height: 50px;
 }
+
+  .products-icon{
+    width: 40px;
+    height: 40px;
+  }
+
+  ion-item.dolar-item{
+    --border-radius: 8px;
+    margin-top: 8px;
+    --ion-background-color: white;
+ }
+
+ .clothe-container{
+    display: flex;
+    justify-content: space-around;
+    gap: 16px;
+ }
+
+ .bb-column{
+    display: flex;
+    flex-direction: column;
+ }
+

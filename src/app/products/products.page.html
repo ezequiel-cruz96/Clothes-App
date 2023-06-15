@@ -1,7 +1,36 @@
 
 <ion-content class="products ion-padding">
 
-  <div style="margin-bottom: 16px;">
+  <section *ngIf="remeras">
+  <!--     <ion-item color="light" class="dolar-item" *ngFor="let remera of remeras.remeras">
+        <div class="bb-column">
+        <img src="./assets/icon/Remera.svg"alt="" class="products-icon">
+        <div class="clothe-container ion-margin-top io-row">  
+            <ion-label>Producto:</ion-label>
+            <ion-label>Precio: {{ remera.precio }}</ion-label>
+            <ion-label>Marca:</ion-label>
+          </div>
+        </div>
+        </ion-item>
+ -->
+        <div style="margin-top: 16px;">
+          <ion-item color="light" class="dolar-item" *ngFor="let remera of filterProducts">
+            <div class="bb-column">
+            <img src="./assets/icon/Remera.svg"alt="" class="products-icon">
+            <div class="clothe-container ion-margin-top io-row">  
+                <ion-label>Producto:</ion-label>
+                <ion-label>Precio: {{ remera.precio }}</ion-label>
+                <ion-label>Marca:</ion-label>
+              </div>
+            </div>
+            </ion-item>
+        </div>
+
+  
+     
+  </section>
+
+  <div style="margin-bottom: 16px; margin-top:16px ;">
     <ion-label class="title-products">Carga de productos</ion-label>
   </div>
 
@@ -22,7 +51,7 @@
   </div>
 
   <ion-item color="light" class="prenda-item">
-    <ion-select [(ngModel)]="selecTedTalle" placeholder="Tipo de talle">  // pass your selecTedValue ngModel as parameter
+    <ion-select [(ngModel)]="selecTedTalle" placeholder="Tipo de talle" (ionChange)="filterByHigh()">  
       <ion-select-option *ngFor="let talle of talles" value="{{ talle }}">
         {{ talle }}
       </ion-select-option>

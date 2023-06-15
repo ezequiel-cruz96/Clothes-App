@@ -41,6 +41,8 @@ export class ProductsPage implements OnInit {
   selecTedValue: any 
 
   selecTedTalle: any 
+
+  filterProducts: any 
   
 
   async pedirDatita(){
@@ -55,9 +57,18 @@ export class ProductsPage implements OnInit {
     try {
       const docSnap = await getDoc(docRef);
 
-      this.datos=docSnap.data()
+      let datos :any=docSnap.data()
 
-      console.log(this.datos.remera.precio);
+      this.filterProducts= datos.productos
+
+      this.remeras= datos.productos
+
+
+
+     
+
+
+      
 
   } catch(error) {
       console.log(error)
@@ -65,12 +76,11 @@ export class ProductsPage implements OnInit {
   }
 
 
-  datos:any
+  remeras:any
 
   places:any
 
   EliminarDatita(){
-
 
       const placeDocRef = doc(this.firestore, `Stock/67pPf3RA53LAAvNkGaxf`);
        deleteDoc(placeDocRef);
@@ -81,9 +91,6 @@ export class ProductsPage implements OnInit {
     } catch(error) {
         console.log(error)
     }
-
-
-  
 
   }
 
@@ -108,6 +115,11 @@ export class ProductsPage implements OnInit {
 
   toBack(){
     this.location.back();  
+  }
+
+  filterByHigh(){
+
+    this.filterProducts= this.remeras.filter((data: { talle: string; }) => data.talle === this.selecTedTalle);
   }
 
 }
