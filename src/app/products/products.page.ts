@@ -126,31 +126,38 @@ export class ProductsPage implements OnInit {
 
     //Sirve para armar arrays aparte
 
- /*    const db = getFirestore();
+    const db = getFirestore();
 
 
     const washingtonRef = doc(db, "Stock", "stock");
 
+    let test= {
+      talle:"M",
+      prenda:"camisa",
+    }
+
+     this.filterProducts.push(test)
     // Atomically add a new region to the "regions" array field.
     await updateDoc(washingtonRef, {
-        remeras: arrayUnion("remeras")
-    }); */
+        productos:  this.filterProducts
+    }); 
+  }
 
-    let test ={
-      marca:"adidas"
-    }
-    const collectionInsta =collection(this.firestore,"Stock","stock")
-    addDoc(collectionInsta, test)
-    .then(() => {
-     console.log("sii")
-    })
-    .catch((err) => {
-      console.log(err)
-    });
-    
-    
+  async eliminar(){
+      //Sirve para armar arrays aparte
+
+      const db = getFirestore();
 
 
+      const washingtonRef = doc(db, "Stock", "stock");
+  
+  
+      let borrar=  this.filterProducts.filter((data: { talle: any }) => data.talle != "L");
+  
+      // Atomically add a new region to the "regions" array field.
+      await updateDoc(washingtonRef, {
+          productos:  borrar
+      }); 
   }
 
 }
