@@ -29,9 +29,13 @@ export class ProductsPage implements OnInit {
 
   talles =['S','M','L','XL'];
 
+  brands =['Adidas','Nike','Puma','Topper'];
+
   selecTedValue: any 
 
   selecTedTalle: any 
+
+  selecTedBrand : any 
 
   filterProducts: any 
 
@@ -95,6 +99,10 @@ export class ProductsPage implements OnInit {
 
   filterByHigh(){
     this.filterProducts= this.remeras.filter((data: { talle: string; }) => data.talle === this.selecTedTalle);
+  }
+
+  filterByBrand(){
+    this.filterProducts= this.remeras.filter((data: { marca: string; }) => data.marca === this.selecTedBrand);
   }
 
 }
