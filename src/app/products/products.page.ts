@@ -101,20 +101,20 @@ export class ProductsPage implements OnInit {
   filterByHigh(){
     if(this.selecTedBrand !=""){
       this.filterProducts= this.remeras.filter((data: { marca: any; talle: any; }) => data.marca === this.selecTedBrand && data.talle === this.selecTedTalle);
+    }else{
+      this.filterProducts= this.remeras.filter((data: { talle: string; }) => data.talle === this.selecTedTalle);
+
     }
   
-      this.filterProducts= this.remeras.filter((data: { talle: string; }) => data.talle === this.selecTedTalle);
- 
   }
 ///marca
   filterByBrand(){
     if(this.selecTedTalle !=""){
       this.filterProducts= this.remeras.filter((data: { marca: any; talle: any; }) => data.marca === this.selecTedBrand && data.talle === this.selecTedTalle);
-    }
+    }else{
       this.filterProducts= this.remeras.filter((data: { marca: any }) => data.marca === this.selecTedBrand);
-  
+    }
   }
-
 
   cleanFilters(){
     this.filterProducts= this.remeras
@@ -124,7 +124,9 @@ export class ProductsPage implements OnInit {
 
   async agregar(){
 
-    const db = getFirestore();
+    //Sirve para armar arrays aparte
+
+ /*    const db = getFirestore();
 
 
     const washingtonRef = doc(db, "Stock", "stock");
@@ -132,7 +134,20 @@ export class ProductsPage implements OnInit {
     // Atomically add a new region to the "regions" array field.
     await updateDoc(washingtonRef, {
         remeras: arrayUnion("remeras")
+    }); */
+
+    let test ={
+      marca:"adidas"
+    }
+    const collectionInsta =collection(this.firestore,"Stock","stock")
+    addDoc(collectionInsta, test)
+    .then(() => {
+     console.log("sii")
+    })
+    .catch((err) => {
+      console.log(err)
     });
+    
     
 
 
