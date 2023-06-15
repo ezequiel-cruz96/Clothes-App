@@ -19,7 +19,25 @@ export class ProductsPage implements OnInit {
     private location : Location
     ) {}
 
+  ngOnInit() {
+    this.getCollection() 
+  }
+
   collection: any[] |  undefined;
+
+  prendas =['Remera','Pantalon','Camisa','Campera'];
+
+  talles =['S','M','L','XL'];
+
+  selecTedValue: any 
+
+  selecTedTalle: any 
+
+  filterProducts: any 
+
+  remeras:any
+
+  places:any
 
   addData(test:any){
     const collectionInsta =collection(this.firestore,"Stock")
@@ -32,81 +50,39 @@ export class ProductsPage implements OnInit {
     });
   }
 
-  
-
-  prendas =['Remera','Pantalon','Camisa','Campera'];
-
-  talles =['S','M','L','XL'];
-
-  selecTedValue: any 
-
-  selecTedTalle: any 
-
-  filterProducts: any 
-  
-
-  async pedirDatita(){
+  async getCollection(){
     const db = getFirestore();
-
     const docRef = doc(db, "Stock", "stock");
-
     const docSnap = await getDoc(docRef);
-
     docSnap.data();
-
     try {
       const docSnap = await getDoc(docRef);
-
       let datos :any=docSnap.data()
-
       this.filterProducts= datos.productos
-
       this.remeras= datos.productos
-
-
-
-     
-
-
-      
-
-  } catch(error) {
-      console.log(error)
-  }
-  }
-
-
-  remeras:any
-
-  places:any
-
-  EliminarDatita(){
-
-      const placeDocRef = doc(this.firestore, `Stock/67pPf3RA53LAAvNkGaxf`);
-       deleteDoc(placeDocRef);
-
-       try {
-        console.log("Se borro la datita")
-  
-    } catch(error) {
+    } 
+    catch(error) {
         console.log(error)
     }
-
   }
 
-  ngOnInit() {
-    this.pedirDatita() 
+  EliminarDatita(){
+    const placeDocRef = doc(this.firestore, `Stock/67pPf3RA53LAAvNkGaxf`);
+      deleteDoc(placeDocRef);
+      try {
+      console.log("Se borro la datita")
+    } 
+    catch(error) {
+        console.log(error)
+    }
   }
-
- onSubmit(){
-
-  let test:object ={
-    nombre:"test"
-  }
-    //this.addData(test)  funciooaaa
-
-     // this.EliminarDatita() funcionaaa
-
+  
+  onSubmit(){
+    let test:object ={
+      nombre:"test"
+    }
+      //this.addData(test)  funciooaaa
+      // this.EliminarDatita() funcionaaa
   }
 
   toMenu(){
@@ -118,7 +94,6 @@ export class ProductsPage implements OnInit {
   }
 
   filterByHigh(){
-
     this.filterProducts= this.remeras.filter((data: { talle: string; }) => data.talle === this.selecTedTalle);
   }
 
