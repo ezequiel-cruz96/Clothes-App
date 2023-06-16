@@ -31,7 +31,7 @@ export class ProductsPage implements OnInit {
 
   talles =['S','M','L','XL'];
 
-  brands =['Adidas','Nike','Puma','Topper'];
+  brands =['Adidas','Nike','Puma','Levi'];
 
   selecTedValue: any 
 
@@ -172,6 +172,10 @@ export class ProductsPage implements OnInit {
 
     toDetail(index :any){
       this.router.navigate([`/product-detail/${index}`]);  
+    }
+
+    reloadPage(){
+      this.getCollection()
     }
 
 
