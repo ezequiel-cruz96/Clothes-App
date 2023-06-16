@@ -19,8 +19,16 @@ ion-item.dolar-item{
     --border-radius: 8px;
     margin-top: 8px;
     --ion-background-color: white;
- }
- ion-button.delete-button{
+}
+
+ion-button.delete-button{
     display: flex;
     justify-content: center;
- }
+}
+
+ion-input.custom {
+    --background: white;
+    --border-radius:8px;
+    --color:black;
+    height:50px
+}

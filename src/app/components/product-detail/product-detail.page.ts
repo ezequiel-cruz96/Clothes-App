@@ -41,6 +41,8 @@ export class ProductDetailPage implements OnInit {
 
   dolars: any 
 
+  selectedPrice: any 
+
   ngOnInit() {
     this.routeParams = this.route.snapshot.params['id']
     this.getCollection() 
@@ -96,6 +98,24 @@ export class ProductDetailPage implements OnInit {
       }); 
       this.router.navigate(['/products']);
   }
+
+  async updateProduct(){
+    const db = getFirestore();
+    const collectionReference = doc(db, "Stock", "stock");
+    let deleteProduct : any 
+    deleteProduct = this.productDetail.filter(
+      ((data: { prenda: any; marca: any; talle: any; precio: any; })  => 
+        data.prenda !=  this.productDetailId.prenda ||
+        data.marca !=  this.productDetailId.marca ||
+        data.talle !=  this.productDetailId.talle  ||
+        data.precio !=  this.productDetailId.precio 
+    ))
+    
+/*     await updateDoc(collectionReference, {
+      productos: deleteProduct
+    });  */
+  this.router.navigate(['/product-detail/{ this.routeParams}']);
+}
 
   toMenu(){
     this.router.navigate(['/menu']);
