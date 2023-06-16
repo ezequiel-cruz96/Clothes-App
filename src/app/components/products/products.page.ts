@@ -178,5 +178,9 @@ export class ProductsPage implements OnInit {
       this.getCollection()
     }
 
+    downloadStock(){
+      console.log("stock")
+    }
+
 
 }
