@@ -14,3 +14,13 @@ ion-content.detail-product{
     align-content: center;
     height: 50px;
 }
+
+ion-item.dolar-item{
+    --border-radius: 8px;
+    margin-top: 8px;
+    --ion-background-color: white;
+ }
+ ion-button.delete-button{
+    display: flex;
+    justify-content: center;
+ }

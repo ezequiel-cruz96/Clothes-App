@@ -7,6 +7,9 @@ import { Firestore, doc, getDoc,getFirestore ,updateDoc } from '@angular/fire/fi
 
 import { ActivatedRoute } from '@angular/router';
 
+import { HttpProvider } from 'src/app/provider/http.provider';
+
+
 
 @Component({
   selector: 'app-product-detail',
@@ -20,7 +23,8 @@ export class ProductDetailPage implements OnInit {
     private route: ActivatedRoute,
     private firestore :Firestore,
     public router:Router,
-    private location : Location
+    private location : Location,
+    public service: HttpProvider,
   ) { }
 
   routeParams: any 
@@ -28,6 +32,14 @@ export class ProductDetailPage implements OnInit {
   productDetail: any 
 
   productDetailId: any 
+
+  actualPrice: any 
+
+  actualPriceRound: any 
+
+  dolarBlue: any
+
+  dolars: any 
 
   ngOnInit() {
     this.routeParams = this.route.snapshot.params['id']
@@ -44,11 +56,29 @@ export class ProductDetailPage implements OnInit {
       let datos : any = docSnap.data()
       this.productDetail = datos.productos
       this.productDetailId =  this.productDetail[this.routeParams]
+      this.getDolars()
     } 
     catch(error) {
         console.log(error)
     }
   }
+
+  getDolars(){
+    ( this.service.getTypesDolar()).subscribe((data: any) => { 
+      this.updateData(data)
+      },
+      (error: any) => { 
+        console.log(error);
+      }
+    )
+  }
+
+    updateData(data: any){
+      this.dolars= data
+      this.dolarBlue = this.dolars[1].casa.venta
+      this.actualPrice= this.productDetailId.precio  / parseFloat(this.dolarBlue)
+      this.actualPriceRound = Math.round(this.actualPrice)
+    }
 
   async deleteProduct(){
         const db = getFirestore();
