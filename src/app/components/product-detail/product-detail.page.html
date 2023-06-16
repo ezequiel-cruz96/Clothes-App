@@ -20,7 +20,11 @@
     class="custom ion-margin-top"
     type="number"
     ></ion-input>
-<ion-button class="delete-button ion-margin-top ion-margin-bottom" (click)="updateProduct()">Actualizar producto</ion-button>
+<ion-button 
+  class="delete-button ion-margin-top ion-margin-bottom" 
+  (click)="updateProduct()"
+  [disabled]="!selectedPrice || selectedPrice <= 0"
+  >Actualizar producto</ion-button>
   <ion-label color="light" class="ion-margin-top">Ajuste de tarifa según Dolar blue</ion-label>
   <ion-item *ngIf="dolars && productDetailId" color="light" class="dolar-item ion-margin-top ion-margin-bottom">
       <ion-label class="ion-margin-top">Precio actualizado al dolar :</ion-label>

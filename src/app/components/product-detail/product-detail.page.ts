@@ -76,9 +76,9 @@ export class ProductDetailPage implements OnInit {
   }
 
     updateData(data: any){
-      this.dolars= data
+      this.dolars = data
       this.dolarBlue = this.dolars[1].casa.venta
-      this.actualPrice= this.productDetailId.precio  / parseFloat(this.dolarBlue)
+      this.actualPrice = this.productDetailId.precio  / parseFloat(this.dolarBlue)
       this.actualPriceRound = Math.round(this.actualPrice)
     }
 
@@ -102,19 +102,18 @@ export class ProductDetailPage implements OnInit {
   async updateProduct(){
     const db = getFirestore();
     const collectionReference = doc(db, "Stock", "stock");
-    let deleteProduct : any 
-    deleteProduct = this.productDetail.filter(
-      ((data: { prenda: any; marca: any; talle: any; precio: any; })  => 
-        data.prenda !=  this.productDetailId.prenda ||
-        data.marca !=  this.productDetailId.marca ||
-        data.talle !=  this.productDetailId.talle  ||
-        data.precio !=  this.productDetailId.precio 
-    ))
-    
-/*     await updateDoc(collectionReference, {
-      productos: deleteProduct
-    });  */
-  this.router.navigate(['/product-detail/{ this.routeParams}']);
+    let updateProduct = {
+      prenda: this.productDetailId.prenda,
+      marca: this.productDetailId.marca,
+      talle: this.productDetailId.talle,
+      precio: this.selectedPrice
+    }
+    let positionProduct = parseFloat(this.routeParams)
+    this.productDetail.splice(positionProduct, 1, updateProduct);
+    await updateDoc(collectionReference, {
+      productos:   this.productDetail
+    }); 
+    this.getCollection() 
 }
 
   toMenu(){
