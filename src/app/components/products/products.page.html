@@ -13,7 +13,7 @@
   <div style="margin-top: 16px;">
     <ion-item color="light" class="dolar-item" *ngFor="let product of filterProducts">
       <div class="bb-column">
-      <img src='./assets/icon/{{product.prenda}}.svg'alt="" class="products-icon">
+      <img src='./assets/icon/{{ product.prenda }}.svg'alt="" class="products-icon" *ngIf="product.prenda">
       <div class="clothe-container ion-margin-top ion-margin-bottom io-row">  
           <ion-label class="producto">Producto: {{ product.prenda }}</ion-label>
           <ion-label class="producto">Precio: {{ product.precio }}</ion-label>
