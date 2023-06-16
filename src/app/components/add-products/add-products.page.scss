@@ -6,5 +6,11 @@ ion-content.add-product {
 ion-item.prenda-item{
     --border-radius: 8px;
     --ion-background-color: white;
+}
+
+ion-input.custom {
+    --background: white;
+    --border-radius:8px;
+    --color:black;
     padding: 5px;
 }

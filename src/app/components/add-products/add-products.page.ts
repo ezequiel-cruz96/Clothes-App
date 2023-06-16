@@ -24,4 +24,17 @@ export class AddProductsPage implements OnInit {
 
   selecTedMarca: string = ""
 
+  inputPrice : string = ""
+
+ cleanFields(){
+  this.selecTedTalle = ""
+  this.selecTedPrenda = ""
+  this.selecTedMarca = ""
+  this.inputPrice = ""
+ }
+
+ addProduct(){
+
+ }
+
 }

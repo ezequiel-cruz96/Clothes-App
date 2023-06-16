@@ -27,5 +27,18 @@
     </ion-select>
   </ion-item>
 
+  <ion-input
+  label=""
+  label-placement="floating"
+  fill="outline"
+  placeholder="Ingrese el precio de la prenda"
+  [(ngModel)]="inputPrice"
+  type="number"
+  class="custom ion-margin-top"
+></ion-input>
+
+  <ion-button class="ion-margin-top" (click)="cleanFields()">Borrar campos</ion-button>
+
+  <ion-button class="ion-margin-top" (click)="addProduct()">Crear prenda</ion-button>
 
 </ion-content>
