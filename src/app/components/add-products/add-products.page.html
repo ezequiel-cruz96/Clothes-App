@@ -1,0 +1,31 @@
+<ion-content class="add-product ion-padding">
+  <div style="margin-bottom: 16px; margin-top:16px ;">
+    <ion-label class="title-products">Productos</ion-label>
+  </div>
+
+  <ion-item color="light" class="prenda-item ion-margin-top">
+    <ion-select [(ngModel)]="selecTedPrenda" placeholder="Selecciona el tipo de prenda">
+      <ion-select-option *ngFor="let prenda of prendas" value="{{ prenda }}">
+        {{ prenda }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item color="light" class="prenda-item ion-margin-top" >
+    <ion-select [(ngModel)]="selecTedMarca" placeholder="Seleccina la marca">
+      <ion-select-option *ngFor="let marca of marcas" value="{{ marca }}">
+        {{ marca }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item color="light" class="prenda-item ion-margin-top">
+    <ion-select [(ngModel)]="selecTedTalle" placeholder="Selecciona el talle">
+      <ion-select-option *ngFor="let talle of talles" value="{{ talle }}">
+        {{ talle }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+
+</ion-content>

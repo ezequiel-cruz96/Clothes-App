@@ -32,9 +32,15 @@ const routes: Routes = [
     loadChildren: () => import('./components/liquidations/liquidations.module').then
     ( m => m.LiquidationsPageModule),
   },
+  
   {
     path: 'products',
-    loadChildren: () => import('./products/products.module').then( m => m.ProductsPageModule)
+    loadChildren: () => import('./components/products/products.module').then( m => m.ProductsPageModule)
+  },
+
+  {
+    path: 'add-products',
+    loadChildren: () => import('./components/add-products/add-products.module').then( m => m.AddProductsPageModule)
   },
 ];
 @NgModule({

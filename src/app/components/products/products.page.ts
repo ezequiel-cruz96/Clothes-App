@@ -160,4 +160,12 @@ export class ProductsPage implements OnInit {
       }); 
   }
 
+    addProduct(){
+      this.router.navigate(['/add-products']);
+
+    }
+    stockPrint(){
+
+    }
+
 }
