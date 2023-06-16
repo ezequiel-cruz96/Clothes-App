@@ -1,5 +1,5 @@
 
-<ion-content class="products ion-padding">
+<ion-content class="products ion-padding" cache-view="false">
   <div style="margin-bottom: 16px; margin-top:16px ;">
     <ion-label class="title-products">Productos</ion-label>
   </div>
@@ -11,7 +11,7 @@
     </div>
   </div>
   <div style="margin-top: 16px;">
-    <ion-item color="light" class="dolar-item" *ngFor="let product of filterProducts">
+    <ion-item color="light" class="dolar-item" *ngFor="let product of filterProducts ; let i = index" (click)="toDetail(i)">
       <div class="bb-column">
       <img src='./assets/icon/{{ product.prenda }}.svg'alt="" class="products-icon" *ngIf="product.prenda">
       <div class="clothe-container ion-margin-top ion-margin-bottom io-row">  

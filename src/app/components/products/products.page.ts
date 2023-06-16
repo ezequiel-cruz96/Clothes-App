@@ -23,6 +23,8 @@ export class ProductsPage implements OnInit {
     this.getCollection() 
   }
 
+ 
+
   collection: any[] |  undefined;
 
   prendas =['Remera','Pantalon','Camisa','Campera'];
@@ -167,5 +169,10 @@ export class ProductsPage implements OnInit {
     stockPrint(){
 
     }
+
+    toDetail(index :any){
+      this.router.navigate([`/product-detail/${index}`]);  
+    }
+
 
 }
