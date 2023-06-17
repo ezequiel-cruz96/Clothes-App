@@ -4,7 +4,12 @@ import { Location } from "@angular/common";
 import { Router } from '@angular/router';
 
 import { Firestore, collection, addDoc, collectionData, doc, getDoc,getFirestore ,deleteDoc,updateDoc, arrayUnion} from '@angular/fire/firestore'
+import * as pdfMake from "pdfmake/build/pdfmake";
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 
+
+
+(<any>pdfMake).vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
   selector: 'app-products',
@@ -12,6 +17,8 @@ import { Firestore, collection, addDoc, collectionData, doc, getDoc,getFirestore
   styleUrls: ['./products.page.scss'],
 })
 export class ProductsPage implements OnInit {
+
+  pdfObject:any = null
 
   constructor( 
     private firestore :Firestore,
@@ -180,7 +187,33 @@ export class ProductsPage implements OnInit {
 
     downloadStock(){
       console.log("stock")
-    }
 
+      let docDefinition = {
+        content: [
+          {
+            layout: 'lightHorizontalLines', // optional
+            table: {
+              // headers are automatically repeated if the table spans over multiple pages
+              // you can declare how many rows should be treated as headers
+              headerRows: 1,
+              widths: [ '*', 'auto', 100, '*' ],
+      
+              body: [
+                [ 'First', 'Second', 'Third', 'The last one' ],
+                [ 'Value 1', 'Value 2', 'Value 3', 'Value 4' ],
+                [ { text: 'Bold value', bold: true }, 'Val 2', 'Val 3', 'Val 4' ]
+              ]
+            }
+          }
+        ]
+      };
+
+     
+
+    //pdfMake.createPdf(docDefinition).download();
+
+    pdfMake.createPdf(docDefinition).download('stock.pdf')
+
+    }
 
 }
