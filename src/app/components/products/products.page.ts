@@ -185,8 +185,7 @@ export class ProductsPage implements OnInit {
       this.getCollection()
     }
 
-    downloadStock(){
-      console.log("stock")
+    downloadStock2(){
 
       let docDefinition = {
         content: [
@@ -199,8 +198,8 @@ export class ProductsPage implements OnInit {
               widths: [ '*', 'auto', 100, '*' ],
       
               body: [
-                [ 'First', 'Second', 'Third', 'The last one' ],
-                [ 'Value 1', 'Value 2', 'Value 3', 'Value 4' ],
+                [ 'stock'],
+                this.filterProducts,
                 [ { text: 'Bold value', bold: true }, 'Val 2', 'Val 3', 'Val 4' ]
               ]
             }
@@ -208,12 +207,46 @@ export class ProductsPage implements OnInit {
         ]
       };
 
-     
+      let test:any = 
+        {
+                  table: {
+                    headerRows: 1,
+                    widths: ['auto', 'auto'],
+                    body: [
+                      ['Code', 'Description'],
+                      ...this.filterProducts.map((element: { price: any; }) => 
+                      
+                          element.price
+                      )
+                    ]
+                  }
+                }
+        
+    
 
-    //pdfMake.createPdf(docDefinition).download();
+     var dd = {content: test};
 
-    pdfMake.createPdf(docDefinition).download('stock.pdf')
+    pdfMake.createPdf(dd).download('stock.pdf')
 
     }
+
+    formatRiskList(riskList: any){
+
+      var printableRisks:any=[]
+
+      riskList.forEach((risk: { precio: any; }) => {
+        printableRisks.push({text:'Description', style:'subheader'});
+        printableRisks.push({text:risk.precio});
+      });
+
+      return printableRisks;   
+    }
+
+
+    downloadStock(){
+      var dd = {content: [this.formatRiskList(this.filterProducts)]};
+      pdfMake.createPdf(dd).download('stock.pdf')
+    }
+
 
 }
