@@ -185,68 +185,49 @@ export class ProductsPage implements OnInit {
       this.getCollection()
     }
 
-    downloadStock2(){
-
-      let docDefinition = {
-        content: [
-          {
-            layout: 'lightHorizontalLines', // optional
-            table: {
-              // headers are automatically repeated if the table spans over multiple pages
-              // you can declare how many rows should be treated as headers
-              headerRows: 1,
-              widths: [ '*', 'auto', 100, '*' ],
-      
-              body: [
-                [ 'stock'],
-                this.filterProducts,
-                [ { text: 'Bold value', bold: true }, 'Val 2', 'Val 3', 'Val 4' ]
-              ]
-            }
+    formatPdfProductos(products: any){
+      var printProductsList:any=[]
+      products.forEach((risk: {
+        talle: any;
+        marca: any;
+        prenda: any; 
+        precio: any; 
+      }) => {
+        printProductsList.push({
+          table: {
+            body: [
+              [
+                'Prenda',
+                'Marca',
+                'Talle',
+                'Precio'
+              ],
+              [
+                risk.prenda,
+                risk.marca,
+                risk.talle,
+                risk.precio,
+              ],
+            ]
           }
-        ]
-      };
-
-      let test:any = 
-        {
-                  table: {
-                    headerRows: 1,
-                    widths: ['auto', 'auto'],
-                    body: [
-                      ['Code', 'Description'],
-                      ...this.filterProducts.map((element: { price: any; }) => 
-                      
-                          element.price
-                      )
-                    ]
-                  }
-                }
+          , margin: [ 0, 0, 0, 20 ]
+        });
         
-    
-
-     var dd = {content: test};
-
-    pdfMake.createPdf(dd).download('stock.pdf')
-
-    }
-
-    formatRiskList(riskList: any){
-
-      var printableRisks:any=[]
-
-      riskList.forEach((risk: { precio: any; }) => {
-        printableRisks.push({text:'Description', style:'subheader'});
-        printableRisks.push({text:risk.precio});
       });
 
-      return printableRisks;   
+      return printProductsList;   
     }
-
 
     downloadStock(){
-      var dd = {content: [this.formatRiskList(this.filterProducts)]};
-      pdfMake.createPdf(dd).download('stock.pdf')
+      let date = new Date();
+
+      let dd = {content: [
+        {
+          text:`Lista de stock ${ date.toLocaleDateString("en-GB") } `
+          , margin: [ 0, 0, 0, 20 ]
+        },
+        this.formatPdfProductos(this.filterProducts)
+      ]};
+      pdfMake.createPdf(dd).download(`Stock-${ date.toLocaleDateString("en-GB")+'.pdf' }`)
     }
-
-
 }
