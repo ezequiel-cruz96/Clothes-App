@@ -1,32 +1,28 @@
 <ion-content class="add-product ion-padding">
-  <div style="margin-bottom: 16px; margin-top:16px ;">
-    <ion-label class="title-products">Productos</ion-label>
-  </div>
-
+  <ion-label class="title-products ion-margin-top" color="light">Productos</ion-label>
   <ion-item color="light" class="prenda-item ion-margin-top">
-    <ion-select [(ngModel)]="selecTedPrenda" placeholder="Selecciona el tipo de prenda">
+    <ion-select [(ngModel)]="selecTedPrenda" placeholder="Seleccione el tipo de prenda">
       <ion-select-option *ngFor="let prenda of prendas" value="{{ prenda }}">
         {{ prenda }}
       </ion-select-option>
     </ion-select>
   </ion-item>
-
   <ion-item color="light" class="prenda-item ion-margin-top" >
-    <ion-select [(ngModel)]="selecTedMarca" placeholder="Seleccina la marca">
+    <ion-select [(ngModel)]="selecTedMarca" placeholder="Seleccione la marca">
       <ion-select-option *ngFor="let marca of marcas" value="{{ marca }}">
         {{ marca }}
       </ion-select-option>
     </ion-select>
   </ion-item>
-
-  <ion-item color="light" class="prenda-item ion-margin-top">
-    <ion-select [(ngModel)]="selecTedTalle" placeholder="Selecciona el talle">
+  <ion-item color="light" class="prenda-item ion-margin-top ion-margin-bottom">
+    <ion-select [(ngModel)]="selecTedTalle" placeholder="Seleccione el talle">
       <ion-select-option *ngFor="let talle of talles" value="{{ talle }}">
         {{ talle }}
       </ion-select-option>
     </ion-select>
   </ion-item>
-
+  <ion-label class="ion-margin-top" color="light">
+    Ingrese el precio de la prenda en $ARS :</ion-label>
   <ion-input
   label=""
   label-placement="floating"
@@ -35,10 +31,20 @@
   [(ngModel)]="selectedPrice"
   type="number"
   class="custom ion-margin-top"
-></ion-input>
-
-  <ion-button class="ion-margin-top" (click)="cleanFields()">Borrar campos</ion-button>
-
-  <ion-button class="ion-margin-top" (click)="addProduct()">Crear prenda</ion-button>
-
+  ></ion-input>
+  <ion-button class="delete-button ion-margin-top" (click)="cleanFields()" color="danger">
+    Limpiar campos</ion-button>
+  <ion-button class="delete-button ion-margin-top" (click)="addProduct()" [disabled]="selectedPrice > 100000">
+    Crear prenda</ion-button>
 </ion-content>
+
+<div class="tabs-navbar">
+  <ion-tab-button tab="home" (click) = "toBack()">
+    <ion-icon name="chevron-back-outline"></ion-icon>
+    Volver
+  </ion-tab-button>
+  <ion-tab-button tab="radio" (click) = "toMenu()">
+    <ion-icon name="grid-outline"></ion-icon>
+    Menu
+  </ion-tab-button>
+</div>

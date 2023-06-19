@@ -13,4 +13,23 @@ ion-input.custom {
     --border-radius:8px;
     --color:black;
     padding: 5px;
+    height: 40px;
+    text-align: center;
+}
+
+ion-button.delete-button{
+    display: flex;
+    justify-content: center;
+}
+
+.title-products{
+    color: white;
+    font-size: 24px;
+}
+
+.tabs-navbar{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: 50px;
 }

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from "@angular/common";
 import { Router } from '@angular/router';
 
-import { Firestore, collection, addDoc, collectionData, doc, getDoc,getFirestore ,deleteDoc,updateDoc, arrayUnion} from '@angular/fire/firestore'
+import { Firestore, doc, getDoc, getFirestore , updateDoc} from '@angular/fire/firestore'
 
 @Component({
   selector: 'app-add-products',
@@ -34,7 +34,7 @@ export class AddProductsPage implements OnInit {
 
   selecTedMarca: string = ""
 
-  selectedPrice : string = ""
+  selectedPrice : number = 0
 
   products: any 
 
@@ -43,55 +43,51 @@ export class AddProductsPage implements OnInit {
     this.selecTedTalle = ""
     this.selecTedPrenda = ""
     this.selecTedMarca = ""
-    this.selectedPrice = ""
+    this.selectedPrice = 0
   }
 
- async getCollection(){
-  const db = getFirestore();
-  const docRef = doc(db, "Stock", "stock");
-  const docSnap = await getDoc(docRef);
-  docSnap.data();
-  try {
-    const docSnap = await getDoc(docRef);
-    let datos :any = docSnap.data()
-    this.products = datos.productos
-  } 
-  catch(error) {
-      console.log(error)
-  }
-}
-
- async addProduct(){
-
+  async getCollection(){
     const db = getFirestore();
-
-    const productsList = doc(db, "Stock", "stock");
-
-    let newProduct= {
-      prenda: this.selecTedPrenda,
-      marca: this.selecTedMarca,
-      talle: this.selecTedTalle,
-      precio: this.selectedPrice
+    const docRef = doc(db, "Stock", "stock");
+    const docSnap = await getDoc(docRef);
+    docSnap.data();
+      try {
+        const docSnap = await getDoc(docRef);
+        let datos :any = docSnap.data()
+        this.products = datos.productos
+      } 
+      catch(error) {
+          console.log(error)
+      }
     }
 
-    this.products.push(newProduct)
-
-    const data = {
-      productos:  this.products
-    };
-    
-    updateDoc(productsList, data)
-    .then(results => {
-      this.router.navigate(['/products']);   
-      })
-    .catch(error => {
-        console.log(error);
-    })
-
-   /* await updateDoc(productsList, {
+  async addProduct(){
+      const db = getFirestore();
+      const productsList = doc(db, "Stock", "stock");
+      let newProduct = {
+        prenda: this.selecTedPrenda,
+        marca: this.selecTedMarca,
+        talle: this.selecTedTalle,
+        precio: this.selectedPrice
+      }
+      this.products.push(newProduct)
+      const data = {
         productos:  this.products
-    })
-   */
+      };  
+      updateDoc(productsList, data)
+      .then(results => {
+        this.router.navigate(['/products']);   
+        })
+      .catch(error => {
+          console.log(error);
+      })
+  }
 
- }
+  toMenu(){
+    this.router.navigate(['/menu']);
+  }
+
+  toBack(){
+    this.location.back();
+  }
 }
