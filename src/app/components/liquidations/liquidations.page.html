@@ -1,34 +1,12 @@
-<ion-content class="ion-padding test" style="margin-bottom: 16px;">
-  <div style="margin-bottom: 16px;">
-    <ion-label class="title-liquidation">Cotización del día</ion-label>
-  </div>
+<ion-content class="ion-padding liquidations">
+    <ion-label class="title-liquidation ion-margin-top">Cotización del día</ion-label>
     <ion-item color="light" *ngFor="let dolar of dolars" class="dolar-item">
-        <ion-label class="io-margin-left">{{ dolar.casa.nombre }}</ion-label>
-          <div class="io-row">  
-            <ion-label>Compra: <span>{{ dolar.casa.compra }} $</span></ion-label>
-            <ion-label>Venta: <span>{{ dolar.casa.venta }} $</span></ion-label>
-          </div>
-        </ion-item>
-        <div style="margin-top: 16px;">
-          <ion-label class="title-liquidation">Ajuste de tarifa según Dolar blue</ion-label>
-        </div>
-        <div style="margin-top: 16px;">
-        <div class="card-container" *ngIf="dolars">
-          <img src="./assets/icon/Remera.svg" alt="" class="clothes-icon">
-          <div>
-            <ion-label color="light"> Precio actual {{ clothesPrice.remera.precio }} $ </ion-label>
-          </div>
-        </div>
-      </div>
-      <div style="margin-top: 16px;">
-        <ion-item *ngIf="dolars && clothesPrice" color="light" class="dolar-item">
-          <div class="card-container">
-            <ion-label >Precio actualizado al dolar :</ion-label>
-            <ion-label >{{ this.clothesPrice.remera.precio }} $ / {{ dolarBlue }} $ 
-              = {{ actualPriceRound }} $ </ion-label>
-          </div>     
-        </ion-item > 
-      </div> 
+        <ion-label class="io-margin-left liquidations">{{ dolar.casa.nombre }}</ion-label>
+        <ion-label>Compra: <span>{{ dolar.casa.compra }} $</span></ion-label>
+        <ion-label>Venta: <span>{{ dolar.casa.venta }} $</span></ion-label>
+    </ion-item>
+    <ion-button class="redirect-button ion-margin-top" (click)="toProducts()">
+      Ir a productos</ion-button>
 </ion-content>
 
 <div class="tabs-navbar">

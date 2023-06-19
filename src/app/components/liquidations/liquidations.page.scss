@@ -1,49 +1,37 @@
-
-
-.io-row{
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    gap: 15px;
+ion-content.liquidations{
+   --ion-background-color:  #EA5455;
 }
 
+ion-item.dolar-item{
+   --border-radius: 8px;
+   margin-top: 8px;
+   --ion-background-color: white;
+}
 
+ion-button.redirect-button{
+   display: flex;
+   justify-content: center;
+}
+
+ion-item.liquidations{
+   display: flex;
+   justify-content: center;
+   align-content: center;
+   gap: 15px;
+}
 
 .io-margin-left{
-    margin-right: 8px;
+   margin-right: 8px;
 }
 
-ion-content.test{
-    --ion-background-color:  #EA5455;
- }
-
- ion-item.dolar-item{
-    --border-radius: 8px;
-    margin-top: 8px;
-    --ion-background-color: white;
- }
-
- .title-liquidation{
-    color: white;
-    font-size: 24px;
- }
-
- .clothes-icon{
-    width: 40px;
-    height: 40px
- }
-
-
- .card-container{
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    gap: 8px;
- }
+.title-liquidation{
+   color: white;
+   font-size: 24px;
+}
 
 .tabs-navbar{
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    height: 50px;
+   display: flex;
+   justify-content: center;
+   align-content: center;
+   height: 50px;
 }
