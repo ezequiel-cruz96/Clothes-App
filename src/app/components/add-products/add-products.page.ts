@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from "@angular/common";
 import { Router } from '@angular/router';
 
-import { Firestore, doc, getDoc, getFirestore , updateDoc} from '@angular/fire/firestore'
+import { doc, getDoc, getFirestore , updateDoc } from '@angular/fire/firestore'
 
 @Component({
   selector: 'app-add-products',
@@ -13,7 +13,6 @@ import { Firestore, doc, getDoc, getFirestore , updateDoc} from '@angular/fire/f
 export class AddProductsPage implements OnInit {
 
   constructor(
-    private firestore :Firestore,
     public router:Router,
     private location : Location
   ) { }
