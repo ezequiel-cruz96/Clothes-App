@@ -1,11 +1,10 @@
 <ion-content class="ion-padding">
-
-<div class="io-center">
-<img src="./assets/icon/Remera.svg"alt="" class="ion-padding clothe-icon">
-</div>
-
-<p *ngIf="validateField && inputUser" class="error-field"> El formato del mail es incorrecto</p>
-
+  <div class="io-center">
+  <ion-img
+    src="./assets/icon/LogoRemera.svg" alt="logo" class="ion-padding clothe-icon"
+  ></ion-img>
+  </div>
+  <ion-label *ngIf="validateField && inputUser" class="error-field"> El formato del mail es incorrecto</ion-label>
   <ion-input
     label="Correo electronico"
     label-placement="floating"
@@ -16,7 +15,6 @@
     (input)="validate()"
     [ngClass]="[ inputUser ? validateField ? 'errors' : 'sucess' : '' ]"
   ></ion-input>
-
   <ion-input
     label="Contraseña"
     label-placement="floating"
@@ -27,21 +25,16 @@
     class=" custom ion-margin-top"
     [ngClass]="[ inputPassword ? 'sucess' : '' ]"
   ></ion-input>
-
-  <ion-button class="ion-margin-top" color="primary"  class="button-google" (click)="registerGoogle()">  
-    <ion-icon name="logo-google"></ion-icon>
-  </ion-button>
-
   <div class="io-center button-wrapper">
     <ion-button 
     [disabled]="inputUser && inputPassword && !validateField ? false : true" 
-    [color]="inputUser && inputPassword ? 'danger' : 'medium'" 
     class="ion-margin-top"
     (click)="login()">
-    Ingresar
-</ion-button>
+      Ingresar
+  </ion-button>
     <ion-button class="ion-margin-top" color="danger" (click)="toRegister()">Registrarse</ion-button>
   </div>
-
-
+  <ion-button class="ion-margin-top" color="primary"  class="button-google" (click)="registerGoogle()">  
+    <ion-icon name="logo-google"></ion-icon>
+  </ion-button>
 </ion-content>

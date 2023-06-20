@@ -21,6 +21,12 @@ ion-content{
     --color:black
  }
 
+ ion-img{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+ }
+
 .clothe-icon {
     width: 150px;
     height: 150px;

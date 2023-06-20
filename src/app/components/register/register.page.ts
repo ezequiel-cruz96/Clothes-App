@@ -30,6 +30,8 @@ export class RegisterPage implements OnInit {
   registerUser() {
     createUserWithEmailAndPassword(this.auth, this.emailRegister, this.passwordRegister)
       .then(() => {
+        this.emailRegister = ""
+        this.passwordRegister = ""
         this.router.navigate(['/login']);
       })
       .catch((error) => {

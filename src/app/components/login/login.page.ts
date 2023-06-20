@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 import { getAuth,Auth, signInWithEmailAndPassword ,linkWithPopup, GoogleAuthProvider } from '@angular/fire/auth';
+
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 
 const provider = new GoogleAuthProvider();
-
-
 
 @Component({
   selector: 'app-login',
@@ -20,8 +19,8 @@ export class LoginPage implements OnInit {
     private alertController: AlertController
     ) {}
 
-
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   inputUser: string = '';
 
@@ -29,18 +28,17 @@ export class LoginPage implements OnInit {
 
   errors: string = '';
 
+  validateField = false
+
   login() {
     signInWithEmailAndPassword(this.autho, this.inputUser, this.inputPassword)
       .then(() => {
+        this.inputUser = ""
+        this.inputPassword = ""
         this.router.navigate(['/menu']);
       })
       .catch((err) => {
-        let mailError :string ="Firebase: Error (auth/invalid-email)."
-        if(err.message === mailError){
-          this.presentAlert("mail")
-        } else{
-          this.presentAlert("password")
-        }
+          this.presentAlert(err)
       });
   }
 
@@ -50,11 +48,9 @@ export class LoginPage implements OnInit {
     .then(() => {
       this.router.navigate(['/menu']);
     }).catch((error) => {
-     console.log(error)
+      console.log(error)
     });
   }
-
-  validateField=false
 
   validate(){
     if(this.inputUser){
@@ -62,17 +58,15 @@ export class LoginPage implements OnInit {
     }
   }
 
-
-   validateEmail (inputUser: any)  {
+  validateEmail (inputUser: any)  {
     return inputUser.match(
       /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     );
   }
 
-  async presentAlert(error :string) {
-    let errors =error==="mail"? "Mail incorrecto / Campo vacio" : "Password incorrecto / Campo vacio"
+  async presentAlert(err : any) {
     const alert = await this.alertController.create({
-      message: errors,   
+      message: err.message,   
     });
     await alert.present();
   }
