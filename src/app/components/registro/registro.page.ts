@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
 import { AlertController } from '@ionic/angular';
 
@@ -16,51 +17,47 @@ export class RegistroPage implements OnInit {
     private alertController: AlertController
     ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
+
+  validateField = false
+
+  emailRegister: string = '';
+
+  passwordRegister: string = ''
 
   registerUser() {
     createUserWithEmailAndPassword(this.auth, this.emailRegister, this.passwordRegister)
       .then(() => {
         this.router.navigate(['/login']);
       })
-      .catch((err) => {
-        this.presentAlert(err)
+      .catch((error) => {
+        this.presentAlert(error)
+        console.log(error.message)
       });
   }
 
-    async presentAlert(err :string) {
-
-    let errorFirebase="Firebase: Password should be at least 6 characters (auth/weak-password)"
-
-    let errors = err != errorFirebase ? "El correo ya esta registrado" : ""
-
+    async presentAlert(error : any) {
     const alert = await this.alertController.create({
-      message: errors,   
+      message: error.message,   
     });
     await alert.present();
   }
 
-   validate(){
+  validate(){
     if(this.emailRegister){
-       this.validateEmail(this.emailRegister) ? this.validateField = false :this.validateField = true
+      this.validateEmail(this.emailRegister) ? this.validateField = false :this.validateField = true
     }
   }
 
-   validateEmail (inputUser: any)  {
-    return inputUser.match(
+  validateEmail (emailRegister: any)  {
+    return emailRegister.match(
       /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     );
   }
-  
-  validateField=false
-
-  emailRegister: string = '';
-
-  passwordRegister: string = '';
 
   toLogin(){
     this.router.navigate(['/login']);
-
   }
 
 }

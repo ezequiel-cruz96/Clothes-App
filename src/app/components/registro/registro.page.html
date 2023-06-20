@@ -1,42 +1,38 @@
 <ion-content class="ion-padding">
-
   <div class="io-center">
-  <ion-icon name="book-outline" class="register-icon"></ion-icon>
+  <ion-icon name="book-outline" color="light" class="register-icon"></ion-icon>
   </div>
-
-    <ion-input
-      label="Correo electronico"
-      label-placement="floating"
-      fill="outline"
-      placeholder="Ingrese su correo electronico"
-      [(ngModel)]="emailRegister"
-      class="custom"
-    ></ion-input>
-  
-    <ion-input
-      label="Contraseña"
-      label-placement="floating"
-      fill="outline"
-      placeholder="Ingrese su contraseña"
-      [(ngModel)]="passwordRegister"
-      type="password"
-      class=" custom ion-margin-top"
-    ></ion-input>
-
-    <div class="io-center button-wrapper">
-      <ion-button 
-        [disabled]="emailRegister && passwordRegister ? false : true" 
-        [color]="emailRegister && passwordRegister  && !validateField ? 'danger' : 'medium'" 
-        class="ion-margin-top"
-        (click)="registerUser()">
+  <ion-label *ngIf="validateField && emailRegister" class="error-field"> El formato del mail es incorrecto</ion-label>
+  <ion-input
+    label="Correo electronico"
+    label-placement="floating"
+    fill="outline"
+    placeholder="Ingrese su correo electronico"
+    [(ngModel)]="emailRegister"
+    class="custom"
+    (input)="validate()"
+    [ngClass]="[ emailRegister ? validateField ? 'errors' : 'sucess' : '' ]"
+  ></ion-input>
+  <ion-input
+    label="Contraseña"
+    label-placement="floating"
+    fill="outline"
+    placeholder="Ingrese su contraseña"
+    [(ngModel)]="passwordRegister"
+    type="password"
+    class=" custom ion-margin-top"
+  ></ion-input>
+    <ion-button 
+      [disabled]="emailRegister && passwordRegister && !validateField ? false : true" 
+      [color]="emailRegister && passwordRegister  && !validateField ? 'danger' : 'medium'" 
+      class="ion-margin-top"
+      (click)="registerUser()">
         Ingresar
     </ion-button>
-    </div>
-
     <ion-button 
-    class="ion-margin-top"
-    (click)="toLogin()">
-      volver
-</ion-button>
-  
-  </ion-content>
+      class="back-button ion-margin-top"
+      (click)="toLogin()"
+      color="danger">
+        Volver
+    </ion-button>
+</ion-content>

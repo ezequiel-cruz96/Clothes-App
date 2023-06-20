@@ -1,34 +1,77 @@
 ion-content{
     --ion-background-color: linear-gradient(#FEB692, #EA5455);
- }
- 
- .io-center{
-     display: flex;
-     justify-content: center;
-     align-content: center;
- }
- 
- .button-wrapper{
-     display: flex;
-     flex-direction: column;
-     gap: 8px;
- }
- 
-  ion-input.custom {
-     --width: 250px;
-     --background: white;
-     --border-radius:8px;
-     --color:black;
-  }
- 
- .register-icon {
-     width: 150px;
-     height: 150px;
- }
- 
- .button-google{
-     width: 100%;
-     margin-top: 16px;
- }
- 
- 
+}
+
+ion-button.back-button{
+    display: flex;
+    justify-content: center;
+}
+
+ion-input.custom {
+    --width: 250px;
+    --background: white;
+    --border-radius:8px;
+    --color:black;
+}
+
+ion-input.custom {
+    --width: 250px;
+    --background: white;
+    --border-radius:8px;
+    --color:black;
+}
+
+ion-button{
+    display: flex;
+    justify-content: center;
+}
+
+ion-icon{
+    display: flex;
+    justify-content: center;
+}
+
+.io-center{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.button-wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.register-icon {
+    width: 150px;
+    height: 150px;
+}
+
+.button-google{
+    width: 100%;
+    margin-top: 16px;
+}
+
+.errors{
+    border: solid red 2px;
+    border-radius: 8px;
+}
+
+.sucess{
+    border: solid #2dd36f 2px;
+    border-radius: 8px;
+}
+
+.error-field{
+    position: absolute;
+    top: 130px;
+    color: red;
+    font-size: 12px;
+    right: 20px;
+    font-weight: 600;
+}
+
+.ion-valid.sc-ion-input-md-h {
+    --highlight-color: none;
+}
