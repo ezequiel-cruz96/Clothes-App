@@ -15,10 +15,10 @@ const routes: Routes = [
   },
 
   {
-    path: 'registro',
+    path: 'register',
     loadChildren: () =>
-      import('./components/registro/registro.module').then(
-        (m) => m.RegistroPageModule
+      import('./components/register/register.module').then(
+        (m) => m.RegisterPageModule
       ),
   },
   

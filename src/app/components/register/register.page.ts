@@ -6,11 +6,12 @@ import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-registro',
-  templateUrl: './registro.page.html',
-  styleUrls: ['./registro.page.scss'],
+  selector: 'app-register',
+  templateUrl: './register.page.html',
+  styleUrls: ['./register.page.scss'],
 })
-export class RegistroPage implements OnInit {
+export class RegisterPage implements OnInit {
+
   constructor(
     public router: Router,
     private auth: Auth,
