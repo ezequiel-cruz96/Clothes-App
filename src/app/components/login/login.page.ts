@@ -30,6 +30,13 @@ export class LoginPage implements OnInit {
 
   validateField = false
 
+  /**
+   * El usuario inicia sesion usando su direccion de email y su contraseña
+   * Utiliza la funcion signInWithEmailAndPassword que nos permite registrar en firebase
+   * Parametros de la funcion signInWithEmailAndPassword  :
+   * : @param inputUser @param inputPassword
+   */
+
   login() {
     signInWithEmailAndPassword(this.autho, this.inputUser, this.inputPassword)
       .then(() => {
@@ -42,6 +49,10 @@ export class LoginPage implements OnInit {
       });
   }
 
+  /**
+   * El usuario inicia sesion con su cuenta de google
+   */
+
   registerGoogle(){
     const auth :any = getAuth();
     linkWithPopup(auth.currentUser, provider)
@@ -52,11 +63,23 @@ export class LoginPage implements OnInit {
     });
   }
 
+  /**
+   * Esta funcion valida si el formato mail es correcto
+   * Si es correcto setea en true la variable validateField
+   * Si es incorrecto setea en false la variable validateField
+   * @param inputUser 
+   */
+
   validate(){
     if(this.inputUser){
-       this.validateEmail(this.inputUser) ? this.validateField = false :this.validateField = true
+      this.validateEmail(this.inputUser) ? this.validateField = false :this.validateField = true
     }
   }
+
+  /**
+   * Esta funcion es un regex que devuelve true si el formato ingresado es correcto
+   * @param inputUser 
+   */
 
   validateEmail (inputUser: any)  {
     return inputUser.match(
@@ -64,12 +87,21 @@ export class LoginPage implements OnInit {
     );
   }
 
+  /**
+   * Esta funcion emite una alerta al recibir un mensaje de error
+   * @param err 
+   */
+
   async presentAlert(err : any) {
     const alert = await this.alertController.create({
       message: err.message,   
     });
     await alert.present();
   }
+
+  /**
+   * Esta funcion nos redirige a la vista de Registro
+   */
 
   toRegister(){
     this.router.navigate(['/register']);

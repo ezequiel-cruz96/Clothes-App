@@ -21,11 +21,11 @@ export class AddProductsPage implements OnInit {
     this.getCollection() 
   }
 
-  prendas =['Remera','Pantalon','Camisa','Campera'];
+  prendas = ['Remera','Pantalon','Camisa','Campera'];
 
-  talles =['S','M','L','XL'];
+  talles = ['S','M','L','XL'];
 
-  marcas =['Adidas','Nike','Puma','Levi'];
+  marcas = ['Adidas','Nike','Puma','Levi'];
 
   selecTedTalle: string = ""
 
@@ -37,6 +37,9 @@ export class AddProductsPage implements OnInit {
 
   products: any 
 
+  /**
+   * Esta funcion limpia los campos de los inputs
+   */
 
   cleanFields(){
     this.selecTedTalle = ""
@@ -44,6 +47,14 @@ export class AddProductsPage implements OnInit {
     this.selecTedMarca = ""
     this.selectedPrice = 0
   }
+
+  /**
+   * Esta funcion obtiene la coleccion de nuesta base en firebase
+   * La funcion getFirestore obtiene nuesta base de datos
+   * La funcion getDoct recibe el nombre y el id de nuestra coleccion para acceder
+   * La variabledocSnap.data() recibe los datos de la colleccion
+   * Los datos se guardan en la variable products
+   */
 
   async getCollection(){
     const db = getFirestore();
@@ -59,6 +70,12 @@ export class AddProductsPage implements OnInit {
           console.log(error)
       }
     }
+
+  /**
+   * Esta funcion agrega productos en nuestra coleccion de firebase
+   * La funcion updateDoc recibe la coleccion que queremos modificar y la modificacion 
+   * Lo hace a traves de productList(ref a nuestra base) y data (datos que queremos cargar)
+   */
 
   async addProduct(){
       const db = getFirestore();
@@ -82,9 +99,17 @@ export class AddProductsPage implements OnInit {
       })
   }
 
+  /**
+   * Esta funcion nos redirige a la vista Menu
+   */
+
   toMenu(){
     this.router.navigate(['/menu']);
   }
+
+  /**
+   * Esta funcion nos redirige a la vista anterior
+   */
 
   toBack(){
     this.location.back();

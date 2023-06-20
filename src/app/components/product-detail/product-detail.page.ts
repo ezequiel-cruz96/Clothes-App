@@ -45,6 +45,15 @@ export class ProductDetailPage implements OnInit {
     this.getCollection() 
   }
 
+  /**
+   * Esta funcion obtiene la coleccion de nuesta base en firebase
+   * La funcion getFirestore obtiene nuesta base de datos
+   * La funcion getDoct recibe el nombre y el id de nuestra coleccion para acceder
+   * La variabledocSnap.data() recibe los datos de la colleccion
+   * Los datos se guardan en la variable productDetail
+   * Identificamos el indice de nuestro producto y guardamos en productDetailId
+   */
+
   async getCollection(){
     const db = getFirestore();
     const docRef = doc(db, "Stock", "stock");
@@ -62,6 +71,11 @@ export class ProductDetailPage implements OnInit {
     }
   }
 
+  /**
+   * Esta funcion funcion obtiene los valores de los dolares de la querie
+   * Los resultados se pasan por parametro en la funcion update data
+   */
+
   getDolars(){
     ( this.service.getTypesDolar()).subscribe((data: any) => { 
       this.updateData(data)
@@ -72,12 +86,21 @@ export class ProductDetailPage implements OnInit {
     )
   }
 
+  /**
+   * Esta funcion calcula el monto en dolares de nuestro producto
+   */
+
     updateData(data: any){
       this.dolars = data
       this.dolarBlue = this.dolars[1].casa.venta
       this.actualPrice = this.productDetailId.precio  / parseFloat(this.dolarBlue)
       this.actualPriceRound = Math.round(this.actualPrice)
     }
+
+  /**
+   * Esta funcion elimina nuestro producto de la base datos de Firebase
+   * Filtra por el producto que querramos eliminar y actualiza
+   */
 
   async deleteProduct(){
         const db = getFirestore();
@@ -96,6 +119,12 @@ export class ProductDetailPage implements OnInit {
       this.router.navigate(['/products']);
   }
 
+  /**
+   * Esta funcion actualiza el precio de nuestro producto
+   * Filtra por el producto que querramos actualizar y cambio el valor del campo
+   * ESto se realiza a traves del objeto updateProduct
+   */
+
   async updateProduct(){
     const db = getFirestore();
     const collectionReference = doc(db, "Stock", "stock");
@@ -111,11 +140,19 @@ export class ProductDetailPage implements OnInit {
       productos:   this.productDetail
     }); 
     this.getCollection() 
-}
+  }
+
+  /**
+   * Esta funcion nos redirige a la vista de Menu
+   */
 
   toMenu(){
     this.router.navigate(['/menu']);
   }
+
+  /**
+   * Esta funcion nos redirige a la vista de anterior
+   */
 
   toBack(){
     this.location.back();  

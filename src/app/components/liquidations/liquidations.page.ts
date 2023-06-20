@@ -25,6 +25,11 @@ export class LiquidationsPage implements OnInit {
 
   dolars: any 
 
+  /**
+   * Esta funcion funcion obtiene los valores de los dolares de la querie
+   * El resultado se guarda en la variable dolars
+   */
+
   getDolars(){( 
     this.service.getTypesDolar()).subscribe(
     (data: any) => {  this.dolars = data},
@@ -32,13 +37,25 @@ export class LiquidationsPage implements OnInit {
     )
   }
 
+  /**
+   * Esta funcion nos redirige a la vista de productos
+   */
+
   toProducts(){
     this.router.navigate(['/products'])
   }
 
+  /**
+   * Esta funcion nos redirige a la vista de Menu
+   */
+
   toMenu(){
     this.router.navigate(['/menu']);
   }
+
+  /**
+   * Esta funcion nos redirige a la vista anterior
+   */
 
   toBack(){
     this.location.back();

@@ -19,16 +19,30 @@ export class MenuPage implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * Esta funcion nos redirige a la vista de Liquidaciones
+   */
+
   toLiquidations(){
     this.router.navigate(['/liquidations']);
   }
+
+  /**
+   * Esta funcion nos redirige a la vista de Productos
+   */
 
   toProducts(){
     this.router.navigate(['/products']);
   }
 
+  /**
+   * Esta fnos deslogea a traves de  la funcion signOut de firebase
+   * Una vez deslogados nos redirije a la vista de Login
+   */
+
   toLogout(){
     signOut(this.auth);
     this.router.navigate(['/login']);
- }
+  }
+
 }

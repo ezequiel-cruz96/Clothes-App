@@ -40,13 +40,19 @@ export class ProductsPage implements OnInit {
 
   selecTedTalle: string = ""
 
-  selecTedBrand:string = ""
+  selecTedBrand: string = ""
 
   filterProducts: any 
 
-  remeras:any
+  products:any
 
-  places:any
+  /**
+   * Esta funcion obtiene la coleccion de nuesta base en firebase
+   * La funcion getFirestore obtiene nuesta base de datos
+   * La funcion getDoct recibe el nombre y el id de nuestra coleccion para acceder
+   * La variabledocSnap.data() recibe los datos de la colleccion
+   * Los datos se guardan en la variable filterProducts y products
+   */
 
   async getCollection(){
     const db = getFirestore();
@@ -57,7 +63,7 @@ export class ProductsPage implements OnInit {
       const docSnap = await getDoc(docRef);
       let datos :any = docSnap.data()
       this.filterProducts = datos.productos
-      this.remeras = datos.productos
+      this.products = datos.productos
     } 
     catch(error) {
         console.log(error)
@@ -72,40 +78,72 @@ export class ProductsPage implements OnInit {
     this.location.back();  
   }
 
-  //talle
+  /**
+   * Esta funcion filtra nuestros productos por talle
+   * Si el filtro de marca esta activo tambien filtra por ese filtro
+   */
+
   filterByHigh(){
-    if(this.selecTedBrand !=""){
-      this.filterProducts = this.remeras.filter((data: { marca: any; talle: any; }) => data.marca === this.selecTedBrand && data.talle === this.selecTedTalle);
+    if(this.selecTedBrand != ""){
+      this.filterProducts = this.products.filter((data: { marca: any; talle: any; }) => data.marca === this.selecTedBrand && data.talle === this.selecTedTalle);
     }else{
-      this.filterProducts = this.remeras.filter((data: { talle: string; }) => data.talle === this.selecTedTalle);
-    }
-  }
-///marca
-  filterByBrand(){
-    if(this.selecTedTalle != ""){
-      this.filterProducts = this.remeras.filter((data: { marca: any; talle: any; }) => data.marca === this.selecTedBrand && data.talle === this.selecTedTalle);
-    }else{
-      this.filterProducts = this.remeras.filter((data: { marca: any }) => data.marca === this.selecTedBrand);
+      this.filterProducts = this.products.filter((data: { talle: string; }) => data.talle === this.selecTedTalle);
     }
   }
 
+  /**
+   * Esta funcion filtra nuestros productos por marca
+   * Si el filtro de talle esta activo tambien filtra por ese filtro
+   */
+
+  filterByBrand(){
+    if(this.selecTedTalle != ""){
+      this.filterProducts = this.products.filter((data: { marca: any; talle: any; }) => data.marca === this.selecTedBrand && data.talle === this.selecTedTalle);
+    }else{
+      this.filterProducts = this.products.filter((data: { marca: any }) => data.marca === this.selecTedBrand);
+    }
+  }
+
+
+  /**
+   * Esta funcion limpia los campos y muestra todos los productos del inventario
+   */
+
   cleanFilters(){
-    this.filterProducts = this.remeras
+    this.filterProducts = this.products
     this.selecTedBrand = ""
     this.selecTedTalle = ""
   }
+
+  /**
+   * Esta funcion nos redirige a la vista de productos
+   */
 
   addProduct(){
     this.router.navigate(['/add-products']);
   }
 
+  /**
+   * Esta funcion nos redirige a la vista de detalle de productos
+   * Depende del id del producto para mostrarnos su detalle
+   */
+
   toDetail(index :any){
     this.router.navigate([`/product-detail/${index}`]);  
   }
 
+  /**
+   * Esta funcion actualiza el inventario
+   */
+
   reloadPage(){
     this.getCollection()
   }
+
+  /**
+   * Esta funcion crea la estructura de nuestro pdf con la libreria PDFMAKE
+   * Recorre nuestro array de productos seteandolos en filas y columnas
+   */
 
   formatPdfProductos(products: any){
     var printProductsList:any=[]
@@ -138,6 +176,11 @@ export class ProductsPage implements OnInit {
     });
     return printProductsList;   
   }
+
+  /**
+   * Esta funcion descarga nuestra lista de productos
+   * La lista de productos depende del filtrado de productos
+   */
 
   downloadStock(){
     let date = new Date();
