@@ -3,11 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from "@angular/common";
 import { Router } from '@angular/router';
 
-import { Firestore, collection, addDoc, collectionData, doc, getDoc,getFirestore ,deleteDoc,updateDoc, arrayUnion} from '@angular/fire/firestore'
+import { Firestore, doc, getDoc, getFirestore } from '@angular/fire/firestore'
 import * as pdfMake from "pdfmake/build/pdfmake";
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
-
-
 
 (<any>pdfMake).vfs = pdfFonts.pdfMake.vfs;
 
@@ -18,7 +16,7 @@ import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 })
 export class ProductsPage implements OnInit {
 
-  pdfObject:any = null
+  pdfObject : any = null
 
   constructor( 
     private firestore :Firestore,
@@ -30,15 +28,13 @@ export class ProductsPage implements OnInit {
     this.getCollection() 
   }
 
- 
-
   collection: any[] |  undefined;
 
-  prendas =['Remera','Pantalon','Camisa','Campera'];
+  prendas = ['Remera','Pantalon','Camisa','Campera'];
 
-  talles =['S','M','L','XL'];
+  talles = ['S','M','L','XL'];
 
-  brands =['Adidas','Nike','Puma','Levi'];
+  brands = ['Adidas','Nike','Puma','Levi'];
 
   selecTedValue: any 
 
@@ -52,17 +48,6 @@ export class ProductsPage implements OnInit {
 
   places:any
 
-  addData(test:any){
-    const collectionInsta =collection(this.firestore,"Stock")
-    addDoc(collectionInsta, test)
-    .then(() => {
-     console.log("sii")
-    })
-    .catch((err) => {
-      console.log(err)
-    });
-  }
-
   async getCollection(){
     const db = getFirestore();
     const docRef = doc(db, "Stock", "stock");
@@ -70,34 +55,15 @@ export class ProductsPage implements OnInit {
     docSnap.data();
     try {
       const docSnap = await getDoc(docRef);
-      let datos :any=docSnap.data()
-      this.filterProducts= datos.productos
-      this.remeras= datos.productos
-    } 
-    catch(error) {
-        console.log(error)
-    }
-  }
-
-  EliminarDatita(){
-    const placeDocRef = doc(this.firestore, `Stock/67pPf3RA53LAAvNkGaxf`);
-      deleteDoc(placeDocRef);
-      try {
-      console.log("Se borro la datita")
+      let datos :any = docSnap.data()
+      this.filterProducts = datos.productos
+      this.remeras = datos.productos
     } 
     catch(error) {
         console.log(error)
     }
   }
   
-  onSubmit(){
-    let test:object ={
-      nombre:"test"
-    }
-      //this.addData(test)  funciooaaa
-      // this.EliminarDatita() funcionaaa
-  }
-
   toMenu(){
     this.router.navigate(['/menu']);
   }
@@ -109,125 +75,80 @@ export class ProductsPage implements OnInit {
   //talle
   filterByHigh(){
     if(this.selecTedBrand !=""){
-      this.filterProducts= this.remeras.filter((data: { marca: any; talle: any; }) => data.marca === this.selecTedBrand && data.talle === this.selecTedTalle);
+      this.filterProducts = this.remeras.filter((data: { marca: any; talle: any; }) => data.marca === this.selecTedBrand && data.talle === this.selecTedTalle);
     }else{
-      this.filterProducts= this.remeras.filter((data: { talle: string; }) => data.talle === this.selecTedTalle);
-
+      this.filterProducts = this.remeras.filter((data: { talle: string; }) => data.talle === this.selecTedTalle);
     }
-  
   }
 ///marca
   filterByBrand(){
-    if(this.selecTedTalle !=""){
-      this.filterProducts= this.remeras.filter((data: { marca: any; talle: any; }) => data.marca === this.selecTedBrand && data.talle === this.selecTedTalle);
+    if(this.selecTedTalle != ""){
+      this.filterProducts = this.remeras.filter((data: { marca: any; talle: any; }) => data.marca === this.selecTedBrand && data.talle === this.selecTedTalle);
     }else{
-      this.filterProducts= this.remeras.filter((data: { marca: any }) => data.marca === this.selecTedBrand);
+      this.filterProducts = this.remeras.filter((data: { marca: any }) => data.marca === this.selecTedBrand);
     }
   }
 
   cleanFilters(){
-    this.filterProducts= this.remeras
+    this.filterProducts = this.remeras
     this.selecTedBrand = ""
     this.selecTedTalle = ""
   }
 
-  async agregar(){
-
-    //Sirve para armar arrays aparte
-
-    const db = getFirestore();
-
-
-    const washingtonRef = doc(db, "Stock", "stock");
-
-    let test= {
-      talle:"M",
-      prenda:"camisa",
-    }
-
-     this.filterProducts.push(test)
-    // Atomically add a new region to the "regions" array field.
-    await updateDoc(washingtonRef, {
-        productos:  this.filterProducts
-    }); 
+  addProduct(){
+    this.router.navigate(['/add-products']);
   }
 
-  async eliminar(){
-      //Sirve para armar arrays aparte
-
-      const db = getFirestore();
-
-
-      const washingtonRef = doc(db, "Stock", "stock");
-  
-  
-      let borrar=  this.filterProducts.filter((data: { talle: any }) => data.talle != "L");
-  
-      // Atomically add a new region to the "regions" array field.
-      await updateDoc(washingtonRef, {
-          productos:  borrar
-      }); 
+  toDetail(index :any){
+    this.router.navigate([`/product-detail/${index}`]);  
   }
 
-    addProduct(){
-      this.router.navigate(['/add-products']);
+  reloadPage(){
+    this.getCollection()
+  }
 
-    }
-    stockPrint(){
-
-    }
-
-    toDetail(index :any){
-      this.router.navigate([`/product-detail/${index}`]);  
-    }
-
-    reloadPage(){
-      this.getCollection()
-    }
-
-    formatPdfProductos(products: any){
-      var printProductsList:any=[]
-      products.forEach((risk: {
-        talle: any;
-        marca: any;
-        prenda: any; 
-        precio: any; 
-      }) => {
-        printProductsList.push({
-          table: {
-            body: [
-              [
-                'Prenda',
-                'Marca',
-                'Talle',
-                'Precio'
-              ],
-              [
-                risk.prenda,
-                risk.marca,
-                risk.talle,
-                risk.precio,
-              ],
-            ]
-          }
-          , margin: [ 0, 0, 0, 20 ]
-        });
-        
+  formatPdfProductos(products: any){
+    var printProductsList:any=[]
+    products.forEach((lista: {
+      talle: any;
+      marca: any;
+      prenda: any; 
+      precio: any; 
+    }) => {
+      printProductsList.push({
+        table: {
+          body: [
+            [
+              'Prenda',
+              'Marca',
+              'Talle',
+              'Precio'
+            ],
+            [
+              lista.prenda,
+              lista.marca,
+              lista.talle,
+              lista.precio,
+            ],
+          ]
+        }
+        , margin: [ 0, 0, 0, 20 ]
       });
+      
+    });
+    return printProductsList;   
+  }
 
-      return printProductsList;   
-    }
+  downloadStock(){
+    let date = new Date();
+    let documentFormat = {content: [
+      {
+        text:`Lista de stock ${ date.toLocaleDateString("en-GB") } `
+        , margin: [ 0, 0, 0, 20 ]
+      },
+      this.formatPdfProductos(this.filterProducts)
+    ]};
+    pdfMake.createPdf(documentFormat).download(`Stock-${ date.toLocaleDateString("en-GB")+'.pdf' }`)
+  }
 
-    downloadStock(){
-      let date = new Date();
-
-      let dd = {content: [
-        {
-          text:`Lista de stock ${ date.toLocaleDateString("en-GB") } `
-          , margin: [ 0, 0, 0, 20 ]
-        },
-        this.formatPdfProductos(this.filterProducts)
-      ]};
-      pdfMake.createPdf(dd).download(`Stock-${ date.toLocaleDateString("en-GB")+'.pdf' }`)
-    }
 }

@@ -1,44 +1,17 @@
 
 <ion-content class="products ion-padding" cache-view="false">
-  <div style="margin-bottom: 16px; margin-top:16px ;">
-    <ion-label class="title-products">Productos</ion-label>
+  <div class="bb-column">
+    <ion-label class="title-products ion-margin-top ion-margin-bottom">Productos</ion-label>
+    <ion-label class="title-products ion-margin-bottom">Marca</ion-label>
   </div>
-
-  <div style="margin-bottom: 16px; margin-top:16px ;">
-    <div class="buttons-header">
-      <ion-button (click)="addProduct()">Agregar producto</ion-button>
-      <ion-button (click)="stockPrint()">Imprimir stock</ion-button>
-      <ion-button (click)="reloadPage()">
-        <ion-icon name="refresh-outline"></ion-icon>
-      </ion-button>
-    </div>
-  </div>
-  <div style="margin-top: 16px;">
-    <ion-item color="light" class="dolar-item" *ngFor="let product of filterProducts ; let i = index" (click)="toDetail(i)">
-      <div class="bb-column">
-      <img src='./assets/icon/{{ product.prenda }}.svg'alt="" class="products-icon" *ngIf="product.prenda">
-      <div class="clothe-container ion-margin-top ion-margin-bottom io-row">  
-          <ion-label class="producto">Producto: {{ product.prenda }}</ion-label>
-          <ion-label class="producto">Precio: {{ product.precio }}</ion-label>
-          <ion-label class="producto">Marca: {{ product.marca }}</ion-label>
-          <ion-label class="producto">Talle: {{ product.talle }}</ion-label>
-        </div>
-      </div>
-      </ion-item>
-  </div>
-  <div style="margin-bottom: 16px; margin-top: 16px;">
-    <ion-label class="title-products">Marca</ion-label>
-  </div>
-  <ion-item color="light" class="prenda-item">
-    <ion-select [(ngModel)]="selecTedBrand" placeholder="Marca" (ionChange)="filterByBrand()">
+  <ion-item color="light" class="prenda-item ion-margin-bottom">
+    <ion-select [(ngModel)]="selecTedBrand" placeholder="Tipo de marca" (ionChange)="filterByBrand()">
       <ion-select-option *ngFor="let marca of brands" value="{{ marca }}">
         {{ marca }}
       </ion-select-option>
     </ion-select>
   </ion-item>
-  <div style="margin-top: 16px;">
-    <ion-label class="title-products">Talle</ion-label>
-  </div>
+    <ion-label class="title-products ion-margin-top">Talle</ion-label>
   <ion-item color="light" class="prenda-item">
     <ion-select [(ngModel)]="selecTedTalle" placeholder="Tipo de talle" (ionChange)="filterByHigh()">  
       <ion-select-option *ngFor="let talle of talles" value="{{ talle }}">
@@ -46,15 +19,27 @@
       </ion-select-option>
     </ion-select>
   </ion-item>
-  <div style="margin-top: 16px;">
-    <ion-button (click)="cleanFilters()">Limpiar filtos</ion-button>
+  <div class="buttons-header ion-margin-top ion-margin-bottom">
+    <ion-button (click)="addProduct()">Agregar producto</ion-button>
+    <ion-button (click)="reloadPage()">
+      <ion-icon name="refresh-outline"></ion-icon>
+    </ion-button>
   </div>
-
-    <div style="margin-top: 16px;">
-      <ion-button (click)="downloadStock()">Descargar stock <ion-icon name="cloud-download-outline"></ion-icon>
-      </ion-button>
+  <ion-item color="light" class="dolar-item ion-margin-top" *ngFor="let product of filterProducts ; let i = index" (click)="toDetail(i)">
+    <div class="bb-column">
+    <img src='./assets/icon/{{ product.prenda }}.svg'alt="" class="products-icon" *ngIf="product.prenda">
+    <div class="clothe-container ion-margin-top ion-margin-bottom io-row">  
+        <ion-label class="producto">Producto: {{ product.prenda }}</ion-label>
+        <ion-label class="producto">Precio: {{ product.precio }}</ion-label>
+        <ion-label class="producto">Marca: {{ product.marca }}</ion-label>
+        <ion-label class="producto">Talle: {{ product.talle }}</ion-label>
+      </div>
     </div>
- 
+  </ion-item>
+    <ion-button class="ion-margin-top" color="danger" (click)="cleanFilters()">Limpiar filtos</ion-button>
+  <ion-button class="ion-margin-top" (click)="downloadStock()">
+    Descargar stock <ion-icon name="cloud-download-outline"></ion-icon>
+  </ion-button>
 </ion-content>
 
 <div class="tabs-navbar">
