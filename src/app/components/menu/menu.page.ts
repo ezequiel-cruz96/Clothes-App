@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
 
-import { Auth , signOut} from '@angular/fire/auth';
-
-
+import { Auth, signOut} from '@angular/fire/auth';
 
 @Component({
   selector: 'app-menu',
@@ -16,7 +14,7 @@ export class MenuPage implements OnInit {
   constructor(
     public router :Router,
     private auth: Auth
-    ) { }
+    ) {}
 
   ngOnInit() {
   }
@@ -29,7 +27,7 @@ export class MenuPage implements OnInit {
     this.router.navigate(['/products']);
   }
 
-   toLogout(){
+  toLogout(){
     signOut(this.auth);
     this.router.navigate(['/login']);
  }

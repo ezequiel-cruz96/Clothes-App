@@ -1,40 +1,32 @@
 
-  <ion-content class="ion-padding">
-    <div style="margin-bottom: 16px;">
-      <ion-label class="title-menu">Menu</ion-label>
-    </div>
-
-    <div class="menu-wrapper io-center">
-
-      <div class="ion-margin-top" color="danger" class="button-wrapper io-center" (click)="toProducts()">
-        <div class="menu-container io-center-column">
-          <img src="./assets/icon/Remera.svg"alt="" class="menu-icon">
-          <p>Inventario</p>
-        </div>
-      </div>
-
-      <div class="ion-margin-top" color="danger" class="button-wrapper io-center" (click)="toLiquidations()">
-        <div class="menu-container io-center-column">
-          <img src="./assets/icon/Dinero.svg"alt="" class="menu-icon">
-          <p>Facturacion</p>
-        </div>
-      </div>
-
-      <div class="ion-margin-top" color="danger" class="button-wrapper io-center">
-        <div class="menu-container io-center-column">
-          <img src="./assets/icon/Lupa.svg"alt="" class="menu-icon">
-          <p>Consulta</p>
-        </div>
-      </div>
-
-      <div class="ion-margin-top" color="danger" class="button-wrapper io-center"  (click)="toLogout()">
+<ion-content class="ion-padding">
+  <ion-label class="title-menu ion-margin-top">Menu</ion-label>
+  <div class="menu-wrapper io-center">
+    <div class="ion-margin-top" color="danger" class="button-wrapper io-center" (click)="toProducts()">
       <div class="menu-container io-center-column">
-        <img src="./assets/icon/Salida.svg"alt="" class="menu-icon">
-        <p>Salir</p>
+        <img src="./assets/icon/LogoRemera.svg" alt="toProducts" class="menu-icon">
+        <ion-label class="ion-margin-top">Inventario</ion-label>
       </div>
     </div>
-      
+    <div class="ion-margin-top" color="danger" class="button-wrapper io-center" (click)="toLiquidations()">
+      <div class="menu-container io-center-column">
+        <img src="./assets/icon/Dinero.svg" alt="toLiquidations" class="menu-icon">
+        <ion-label class="ion-margin-top">Cotización</ion-label>
+      </div>
+    </div>
+    <div class="ion-margin-top" color="danger" class="button-wrapper io-center">
+      <div class="menu-container io-center-column">
+        <img src="./assets/icon/Lupa.svg" alt="toConsult" class="menu-icon">
+        <ion-label class="ion-margin-top">Consulta</ion-label>
+      </div>
+    </div>
+    <div class="ion-margin-top" color="danger" class="button-wrapper io-center"  (click)="toLogout()">
+      <div class="menu-container io-center-column">
+        <img src="./assets/icon/Salida.svg" alt="toLogout" class="menu-icon">
+        <ion-label class="ion-margin-top">Salir</ion-label>
+      </div>
+    </div>
   </div>
-  </ion-content>
+</ion-content>
 
 
