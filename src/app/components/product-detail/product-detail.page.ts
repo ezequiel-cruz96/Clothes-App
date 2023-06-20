@@ -9,15 +9,12 @@ import { ActivatedRoute } from '@angular/router';
 
 import { HttpProvider } from 'src/app/provider/http.provider';
 
-
-
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.page.html',
   styleUrls: ['./product-detail.page.scss'],
 })
 export class ProductDetailPage implements OnInit {
-
 
   constructor(
     private route: ActivatedRoute,
@@ -41,7 +38,7 @@ export class ProductDetailPage implements OnInit {
 
   dolars: any 
 
-  selectedPrice: any 
+  selectedPrice: number = 0
 
   ngOnInit() {
     this.routeParams = this.route.snapshot.params['id']

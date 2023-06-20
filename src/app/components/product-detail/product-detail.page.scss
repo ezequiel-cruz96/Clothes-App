@@ -3,18 +3,6 @@ ion-content.detail-product{
     --ion-background-color: linear-gradient(#FEB692, #EA5455);
 }
 
-.detail-title{
-    color: white;
-    font-size: 24px;
-}
-
-.tabs-navbar{
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    height: 50px;
-}
-
 ion-item.dolar-item{
     --border-radius: 8px;
     margin-top: 8px;
@@ -30,5 +18,19 @@ ion-input.custom {
     --background: white;
     --border-radius:8px;
     --color:black;
-    height:50px
+    height:50px;
+    text-align: center;
 }
+
+.detail-title{
+    color: white;
+    font-size: 24px;
+}
+
+.tabs-navbar{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: 50px;
+}
+
