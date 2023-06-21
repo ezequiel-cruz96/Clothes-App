@@ -183,6 +183,7 @@ export class ProductsPage implements OnInit {
    */
 
   downloadStock(){
+    localStorage.setItem('Stock actualizado', JSON.stringify(this.filterProducts));
     let date = new Date();
     let documentFormat = {content: [
       {
