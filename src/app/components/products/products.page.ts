@@ -30,11 +30,11 @@ export class ProductsPage implements OnInit {
 
   collection: any[] |  undefined;
 
-  prendas = ['Remera','Pantalon','Camisa','Campera'];
+  prendas = ['Remera','Pantalon','Short','Campera','Sueter','Buzo'];
 
   talles = ['S','M','L','XL'];
 
-  brands = ['Adidas','Nike','Puma','Levi'];
+  brands = ['Generica','Adidas','Nike','Puma','Levi'];
 
   selecTedValue: any 
 

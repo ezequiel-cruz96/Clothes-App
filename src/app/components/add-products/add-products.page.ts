@@ -21,11 +21,11 @@ export class AddProductsPage implements OnInit {
     this.getCollection() 
   }
 
-  prendas = ['Remera','Pantalon','Camisa','Campera'];
+  prendas = ['Remera','Pantalon','Short','Campera','Sueter','Buzo'];
 
   talles = ['S','M','L','XL'];
 
-  marcas = ['Adidas','Nike','Puma','Levi'];
+  marcas = ['Generica','Adidas','Nike','Puma','Levi'];
 
   selecTedTalle: string = ""
 
