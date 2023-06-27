@@ -1,0 +1,40 @@
+<ion-content class="search ion-padding">
+  <div>
+    <ion-label class="title-menu ion-margin-top ion-margin-bottom">Consulta</ion-label>
+  </div>
+  <div style="margin-top: 32px; margin-bottom: 16px;">
+  <ion-label class="title-prenda ion-margin-top">Filtra por tipo de prenda :</ion-label>
+</div>
+  <ion-input
+    label="Prenda"
+    label-placement="floating"
+    fill="outline"
+    placeholder="Ingrese su correo electronico"
+    [(ngModel)]="selectedProduct"
+    class="custom"
+    (input)="validate()"
+    color="light"
+  ></ion-input>
+  <ion-item color="light" class="dolar-item ion-margin-top" *ngFor="let product of products ; let i = index" (click)="toDetail(product)">
+    <div class="bb-column">
+    <img src='./assets/icon/{{ product.prenda }}.svg'alt="" class="products-icon" *ngIf="product.prenda">
+    <div class="clothe-container ion-margin-top ion-margin-bottom io-row">  
+        <ion-label class="producto">Producto: {{ product.prenda }}</ion-label>
+        <ion-label class="producto">Precio: {{ product.precio }}</ion-label>
+        <ion-label class="producto">Marca: {{ product.marca }}</ion-label>
+        <ion-label class="producto">Talle: {{ product.talle }}</ion-label>
+      </div>
+    </div>
+  </ion-item>
+</ion-content>
+
+<div class="tabs-navbar">
+  <ion-tab-button tab="home" (click) = "toBack()">
+    <ion-icon name="chevron-back-outline"></ion-icon>
+    Volver
+  </ion-tab-button>
+  <ion-tab-button tab="radio" (click) = "toMenu()">
+    <ion-icon name="grid-outline"></ion-icon>
+    Menu
+  </ion-tab-button>
+</div>

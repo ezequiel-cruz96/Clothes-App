@@ -78,13 +78,21 @@ export class AddProductsPage implements OnInit {
    */
 
   async addProduct(){
+    var generateId 
+    if(this.products.length ==""){
+      generateId = 0
+    }
+    else{
+      generateId = this.products[ this.products.length - 1].id + 1
+    }
       const db = getFirestore();
       const productsList = doc(db, "Stock", "stock");
       let newProduct = {
         prenda: this.selecTedPrenda,
         marca: this.selecTedMarca,
         talle: this.selecTedTalle,
-        precio: this.selectedPrice
+        precio: this.selectedPrice,
+        id: generateId 
       }
       this.products.push(newProduct)
       const data = {

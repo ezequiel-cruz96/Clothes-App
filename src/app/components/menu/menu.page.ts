@@ -45,4 +45,13 @@ export class MenuPage implements OnInit {
     this.router.navigate(['/login']);
   }
 
+    /**
+   * Esta fnos deslogea a traves de  la funcion signOut de firebase
+   * Una vez deslogados nos redirije a la vista de Login
+   */
+
+  toSearch(){
+    this.router.navigate(['/search'])
+  }
+
 }

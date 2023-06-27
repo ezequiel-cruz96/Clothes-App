@@ -1,0 +1,77 @@
+ion-content.search{
+  --ion-background-color: linear-gradient(#FEB692, #EA5455);
+}
+
+ion-input.custom {
+--width: 250px;
+--background: white;
+--border-radius:8px;
+--color:black
+}
+
+.tabs-navbar{
+display: flex;
+justify-content: center;
+align-content: center;
+height: 50px;
+}
+
+ion-item.prenda-item{
+  --border-radius: 8px;
+  margin-top: 8px;
+  --ion-background-color: white;
+}
+
+ion-item.dolar-item{
+  --border-radius: 8px;
+  margin-top: 8px;
+  --ion-background-color: white;
+}
+
+ion-label.title-menu{
+  color: white;
+  font-size: 24px
+}
+
+ion-label.title-prenda {
+  color: white;
+  font-size: 24px;
+  margin-top: 16px;
+}
+
+
+
+.title-products{
+  color: white;
+  font-size: 24px;
+}
+
+.tabs-navbar{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  height: 50px;
+}
+
+.products-icon{
+  margin-top: 8px;
+  width: 40px;
+  height: 40px;
+}
+
+.clothe-container{
+  display: flex;
+  justify-content: space-around;
+  gap: 16px;
+}
+
+.bb-column{
+  display: flex;
+  flex-direction: column;
+}
+
+.buttons-header{
+  display: flex;
+  justify-content: space-between;
+}
+

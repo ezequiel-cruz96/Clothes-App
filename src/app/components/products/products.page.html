@@ -26,7 +26,7 @@
       <ion-icon name="refresh-outline"></ion-icon>
     </ion-button>
   </div>
-  <ion-item color="light" class="dolar-item ion-margin-top" *ngFor="let product of filterProducts ; let i = index" (click)="toDetail(i)">
+  <ion-item color="light" class="dolar-item ion-margin-top" *ngFor="let product of filterProducts" (click)="toDetail(product)">
     <div class="bb-column">
     <img src='./assets/icon/{{ product.prenda }}.svg'alt="" class="products-icon" *ngIf="product.prenda">
     <div class="clothe-container ion-margin-top ion-margin-bottom io-row">  

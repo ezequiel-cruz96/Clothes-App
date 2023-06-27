@@ -128,8 +128,8 @@ export class ProductsPage implements OnInit {
    * Depende del id del producto para mostrarnos su detalle
    */
 
-  toDetail(index :any){
-    this.router.navigate([`/product-detail/${index}`]);  
+  toDetail(product :any){
+    this.router.navigate([`/product-detail/${product.id}`]);    
   }
 
   /**
