@@ -131,6 +131,7 @@ export class ProductDetailPage implements OnInit {
     const db = getFirestore();
     const collectionReference = doc(db, "Stock", "stock");
     let updateProduct = {
+      id :this.productDetailId.id,
       prenda: this.productDetailId.prenda,
       marca: this.productDetailId.marca,
       talle: this.productDetailId.talle,
@@ -156,6 +157,7 @@ export class ProductDetailPage implements OnInit {
     const db = getFirestore();
     const collectionReference = doc(db, "Stock", "stock");
     let updateProduct = {
+      id :this.productDetailId.id,
       prenda: this.productDetailId.prenda,
       marca: this.productDetailId.marca,
       talle: this.productDetailId.talle,
