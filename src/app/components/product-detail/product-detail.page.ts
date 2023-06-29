@@ -40,6 +40,8 @@ export class ProductDetailPage implements OnInit {
 
   selectedPrice: number = 0
 
+  selectedStock: number = 0
+
   ngOnInit() {
     this.routeParams = this.route.snapshot.params['id']
     this.getCollection() 
@@ -132,7 +134,33 @@ export class ProductDetailPage implements OnInit {
       prenda: this.productDetailId.prenda,
       marca: this.productDetailId.marca,
       talle: this.productDetailId.talle,
-      precio: this.selectedPrice
+      precio: this.selectedPrice,
+      stock: this.productDetailId.stock,
+    }
+    let positionProduct = parseFloat(this.routeParams)
+    this.productDetail.splice(positionProduct, 1, updateProduct);
+    await updateDoc(collectionReference, {
+      productos:   this.productDetail
+    }); 
+    this.getCollection() 
+  }
+
+   /**
+   * Esta funcion actualiza el stock de nuestro producto
+   * Filtra por el producto que querramos actualizar y cambio el valor del campo
+   * ESto se realiza a traves del objeto updateProduct
+   */
+
+
+  async updateStock(){
+    const db = getFirestore();
+    const collectionReference = doc(db, "Stock", "stock");
+    let updateProduct = {
+      prenda: this.productDetailId.prenda,
+      marca: this.productDetailId.marca,
+      talle: this.productDetailId.talle,
+      precio: this.productDetailId.precio,
+      stock :this.selectedStock
     }
     let positionProduct = parseFloat(this.routeParams)
     this.productDetail.splice(positionProduct, 1, updateProduct);

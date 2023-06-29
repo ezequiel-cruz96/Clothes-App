@@ -7,7 +7,8 @@
       <ion-card-title>{{ productDetailId.prenda }}</ion-card-title>
       <ion-card-subtitle>Marca : {{ productDetailId.marca }}</ion-card-subtitle>
       <ion-card-subtitle>Talle : {{ productDetailId.talle }}</ion-card-subtitle>
-      <ion-card-subtitle>Precio : {{ productDetailId.precio }} $ARS</ion-card-subtitle>
+      <ion-card-subtitle>Precio : $ARS {{ productDetailId.precio }}</ion-card-subtitle>
+      <ion-card-subtitle>Stock : {{ productDetailId.stock }}</ion-card-subtitle>
     </ion-card-header>
   </ion-card>
   <ion-label class="ion-margin-top ion-margin-bottom" color="light">Editar precio de producto en $ARS</ion-label>
@@ -24,11 +25,25 @@
     class="delete-button ion-margin-top ion-margin-bottom" 
     (click)="updateProduct()"
     [disabled]="!selectedPrice || selectedPrice <= 0 || selectedPrice >100000"
-    >Actualizar producto</ion-button>
+    >Actualizar precio</ion-button>
+    <ion-label class="ion-margin-top ion-margin-bottom" color="light">Editar cantidad de stock</ion-label>
+    <ion-input
+      label=""
+      label-placement="floating"
+      fill="outline"
+      placeholder="Ingrese el monto actualizado"
+      [(ngModel)]="selectedStock"
+      class="custom ion-margin-top"
+      type="number"
+      ></ion-input>
+      <ion-button 
+      class="delete-button ion-margin-top ion-margin-bottom" 
+      (click)="updateStock()"
+      >Actualizar stock</ion-button>
     <ion-label color="light" class="ion-margin-top">Ajuste de tarifa según Dolar blue</ion-label>
     <ion-item *ngIf="dolars && productDetailId" color="light" class="dolar-item ion-margin-top ion-margin-bottom">
         <ion-label class="ion-margin-top">Precio actualizado al dolar :</ion-label>
-        <ion-label class="ion-margin-top">{{ productDetailId.precio }} $ARS / {{ dolarBlue }} $US
+        <ion-label class="ion-margin-top">$ARS {{ productDetailId.precio }} / $US {{ dolarBlue }} 
           = {{ actualPriceRound }} $US </ion-label>
     </ion-item > 
     <ion-button class="delete-button ion-margin-top" (click)="deleteProduct()" color="danger">Eliminar producto</ion-button>
