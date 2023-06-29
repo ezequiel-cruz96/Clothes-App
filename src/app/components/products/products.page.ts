@@ -152,6 +152,7 @@ export class ProductsPage implements OnInit {
       marca: any;
       prenda: any; 
       precio: any; 
+      stock: any; 
     }) => {
       printProductsList.push({
         table: {
@@ -160,13 +161,15 @@ export class ProductsPage implements OnInit {
               'Prenda',
               'Marca',
               'Talle',
-              'Precio'
+              'Precio',
+              'Stock'
             ],
             [
               lista.prenda,
               lista.marca,
               lista.talle,
               lista.precio,
+              lista.stock
             ],
           ]
         }
@@ -187,12 +190,12 @@ export class ProductsPage implements OnInit {
     let date = new Date();
     let documentFormat = {content: [
       {
-        text:`Lista de stock ${ date.toLocaleDateString("en-GB") } `
+        text:`Lista de stock ${ date.toLocaleString() } `
         , margin: [ 0, 0, 0, 20 ]
       },
       this.formatPdfProductos(this.filterProducts)
     ]};
-    pdfMake.createPdf(documentFormat).download(`Stock-${ date.toLocaleDateString("en-GB")+'.pdf' }`)
+    pdfMake.createPdf(documentFormat).download(`Stock-${ date.toLocaleString() +'.pdf' }`)
   }
 
 }
