@@ -69,7 +69,8 @@ export class ProductDetailPage implements OnInit {
       const docSnap = await getDoc(docRef);
       let datos : any = docSnap.data()
       this.productDetail = datos.productos
-      this.productDetailId =  this.productDetail[this.routeParams]
+      let productInfo= this.productDetail.filter((data: { id: any }) => data.id == this.routeParams);
+      this.productDetailId = productInfo[0]
       this.getDolars()
     } 
     catch(error) {
