@@ -59,7 +59,7 @@ export class LoginPage implements OnInit {
     .then(() => {
       this.router.navigate(['/menu']);
     }).catch((error) => {
-      console.log(error)
+      this.consoleAlert(error)
     });
   }
 
@@ -93,8 +93,6 @@ export class LoginPage implements OnInit {
    */
 
   async presentAlert(error : any) {
-
-
     var errorUser : any
     switch (error.message) {
       case "Firebase: Error (auth/user-not-found).": 
@@ -109,6 +107,18 @@ export class LoginPage implements OnInit {
     });
     await alert.present();
   }
+
+    /**
+   * Esta funcion emite una alerta al recibir un mensaje de error
+   * @param error
+   */
+
+    async consoleAlert(error : any) {
+      const alert = await this.alertController.create({
+        message: error.message,   
+      });
+      await alert.present();
+    }
 
   /**
    * Esta funcion nos redirige a la vista de Registro

@@ -7,6 +7,9 @@ import { Firestore, doc, getDoc, getFirestore } from '@angular/fire/firestore'
 import * as pdfMake from "pdfmake/build/pdfmake";
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 
+import { AlertController } from '@ionic/angular';
+
+
 (<any>pdfMake).vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -21,7 +24,8 @@ export class ProductsPage implements OnInit {
   constructor( 
     private firestore :Firestore,
     public router:Router,
-    private location : Location
+    private location : Location,
+    private alertController: AlertController
     ) {}
 
   ngOnInit() {
@@ -66,7 +70,7 @@ export class ProductsPage implements OnInit {
       this.products = datos.productos
     } 
     catch(error) {
-        console.log(error)
+      this.presentAlert(error)
     }
   }
   
@@ -196,6 +200,17 @@ export class ProductsPage implements OnInit {
       this.formatPdfProductos(this.filterProducts)
     ]};
     pdfMake.createPdf(documentFormat).download(`Stock-${ date.toLocaleString() +'.pdf' }`)
+  }
+
+    /**
+   * Esta funcion muestra los errores
+   */
+
+  async presentAlert(error : any) {
+    const alert = await this.alertController.create({
+      message: error.message,   
+    });
+    await alert.present();
   }
 
 }

@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from "@angular/common";
 import { Router } from '@angular/router';
 
+import { AlertController } from '@ionic/angular';
+
+
 import { doc, getDoc, getFirestore , updateDoc } from '@angular/fire/firestore'
 
 @Component({
@@ -14,7 +17,8 @@ export class AddProductsPage implements OnInit {
 
   constructor(
     public router:Router,
-    private location : Location
+    private location : Location,
+    private alertController: AlertController
   ) { }
 
   ngOnInit() {
@@ -70,7 +74,7 @@ export class AddProductsPage implements OnInit {
         this.products = datos.productos
       } 
       catch(error) {
-          console.log(error)
+        this.presentAlert(error)
       }
     }
 
@@ -107,7 +111,7 @@ export class AddProductsPage implements OnInit {
         this.router.navigate(['/products']);   
         })
       .catch(error => {
-          console.log(error);
+        this.presentAlert(error)
       })
   }
 
@@ -126,4 +130,17 @@ export class AddProductsPage implements OnInit {
   toBack(){
     this.location.back();
   }
+
+    /**
+   * Esta funcion es una alerta que muestra los errores que puedan surgir
+   * Segun el tipo de error devuelve un mensaje distinto
+   */
+
+    async presentAlert(error : any) {
+      const alert = await this.alertController.create({
+        message: error.message,   
+      });
+      await alert.present();
+    }
+  
 }

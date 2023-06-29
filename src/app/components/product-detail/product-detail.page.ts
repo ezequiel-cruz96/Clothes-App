@@ -9,6 +9,9 @@ import { ActivatedRoute } from '@angular/router';
 
 import { HttpProvider } from 'src/app/provider/http.provider';
 
+import { AlertController } from '@ionic/angular';
+
+
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.page.html',
@@ -22,6 +25,7 @@ export class ProductDetailPage implements OnInit {
     public router:Router,
     private location : Location,
     public service: HttpProvider,
+    private alertController: AlertController
   ) { }
 
   routeParams: any 
@@ -69,7 +73,7 @@ export class ProductDetailPage implements OnInit {
       this.getDolars()
     } 
     catch(error) {
-        console.log(error)
+      this.presentAlert(error)
     }
   }
 
@@ -83,7 +87,7 @@ export class ProductDetailPage implements OnInit {
       this.updateData(data)
       },
       (error: any) => { 
-        console.log(error);
+        this.presentAlert(error)
       }
     )
   }
@@ -187,5 +191,17 @@ export class ProductDetailPage implements OnInit {
   toBack(){
     this.location.back();  
   }
+
+      /**
+   * Esta funcion es una alerta que muestra los errores que puedan surgir
+   * Segun el tipo de error devuelve un mensaje distinto
+   */
+
+    async presentAlert(error : any) {
+      const alert = await this.alertController.create({
+        message: error.message,   
+      });
+      await alert.present();
+    }
 
 }

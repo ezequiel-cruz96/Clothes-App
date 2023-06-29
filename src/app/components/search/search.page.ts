@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from "@angular/common";
 import { Router } from '@angular/router';
 
+import { AlertController } from '@ionic/angular';
+
+
 import { Firestore, doc, getDoc, getFirestore } from '@angular/fire/firestore'
 
 @Component({
@@ -15,7 +18,8 @@ export class SearchPage implements OnInit {
   constructor( 
     private firestore :Firestore,
     public router:Router,
-    private location : Location
+    private location : Location,
+    private alertController: AlertController
     ) {}
 
   ngOnInit() {
@@ -43,7 +47,8 @@ export class SearchPage implements OnInit {
       this.searchProduct = datos.productos
     } 
     catch(error) {
-        console.log(error)
+      this.presentAlert(error)
+
     }
   }
 
@@ -80,4 +85,15 @@ export class SearchPage implements OnInit {
     this.selectedProduct = ""
     this.location.back();
   }
+
+      /**
+   * Esta funcion muestra los errores
+   */
+
+      async presentAlert(error : any) {
+        const alert = await this.alertController.create({
+          message: error.message,   
+        });
+        await alert.present();
+      }
 }
