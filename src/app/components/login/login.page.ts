@@ -92,9 +92,20 @@ export class LoginPage implements OnInit {
    * @param err 
    */
 
-  async presentAlert(err : any) {
+  async presentAlert(error : any) {
+
+
+    var errorUser : any
+    switch (error.message) {
+      case "Firebase: Error (auth/user-not-found).": 
+        errorUser = "Correo electrónico no existe"
+        break;
+        case "Firebase: Error (auth/wrong-password).": 
+        errorUser = "La contraseña es incorrecta"
+        break;
+    }
     const alert = await this.alertController.create({
-      message: err.message,   
+      message: errorUser,   
     });
     await alert.present();
   }

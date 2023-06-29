@@ -28,6 +28,10 @@ export class SearchPage implements OnInit {
 
   products: any 
 
+    /**
+   * Esta funcion Obtiene todos los productos
+   */
+
   async getCollection(){
     const db = getFirestore();
     const docRef = doc(db, "Stock", "stock");
@@ -43,9 +47,17 @@ export class SearchPage implements OnInit {
     }
   }
 
+    /**
+   * Esta funcion filtra por tipo de prenda
+   */
+
   validate(){
     this.products = this.searchProduct.filter((data: { prenda: string; }) => data.prenda === this.selectedProduct);
   }
+
+    /**
+   * Esta funcion nos redirige a la de detalle usando como parametro el id de la prenda
+   */
 
   toDetail(product :any){
     this.router.navigate([`/product-detail/${product.id}`]);  

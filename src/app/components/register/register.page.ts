@@ -42,19 +42,28 @@ export class RegisterPage implements OnInit {
       })
       .catch((error) => {
         this.presentAlert(error)
-        console.log(error.message)
       });
   }
 
   /**
    * Esta funcion es una alerta que muestra los errores de Firebase
+   * Segun el tipo de error devuelve un mensaje distinto
    */
 
   async presentAlert(error : any) {
-  const alert = await this.alertController.create({
-    message: error.message,   
-  });
-  await alert.present();
+    var errorUser : any
+    switch (error.message) {
+      case "Firebase: Error (auth/email-already-in-use).": 
+        errorUser = "Correo electrónico ya registrado"
+        break;
+        case "Firebase: Password should be at least 6 characters (auth/weak-password).": 
+        errorUser = "La contraseña debe tener al menos 6 caracteres"
+        break;
+    }
+    const alert = await this.alertController.create({
+      message: errorUser,   
+    });
+    await alert.present();
   }
 
   /**
