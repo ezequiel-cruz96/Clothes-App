@@ -32,6 +32,19 @@
   type="number"
   class="custom ion-margin-top"
   ></ion-input>
+  <div style="margin-top: 16px;" >
+  <ion-label class="ion-margin-top" color="light">
+    Ingrese la cantidad de stock:</ion-label>
+  </div>
+  <ion-input
+  label=""
+  label-placement="floating"
+  fill="outline"
+  placeholder="Ingrese el precio de la prenda"
+  [(ngModel)]="selectedStock"
+  type="number"
+  class="custom ion-margin-top"
+  ></ion-input>
   <ion-button class="delete-button ion-margin-top" (click)="cleanFields()" color="danger">
     Limpiar campos</ion-button>
   <ion-button class="delete-button ion-margin-top" (click)="addProduct()" [disabled]="selectedPrice > 100000">

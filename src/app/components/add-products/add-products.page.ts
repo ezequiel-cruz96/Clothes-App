@@ -35,6 +35,8 @@ export class AddProductsPage implements OnInit {
 
   selectedPrice : number = 0
 
+  selectedStock : number = 0
+
   products: any 
 
   /**
@@ -46,6 +48,7 @@ export class AddProductsPage implements OnInit {
     this.selecTedPrenda = ""
     this.selecTedMarca = ""
     this.selectedPrice = 0
+    this.selectedStock = 0
   }
 
   /**
@@ -88,11 +91,12 @@ export class AddProductsPage implements OnInit {
       const db = getFirestore();
       const productsList = doc(db, "Stock", "stock");
       let newProduct = {
+        id: generateId ,
         prenda: this.selecTedPrenda,
         marca: this.selecTedMarca,
         talle: this.selecTedTalle,
         precio: this.selectedPrice,
-        id: generateId 
+        stock: this.selectedStock
       }
       this.products.push(newProduct)
       const data = {
